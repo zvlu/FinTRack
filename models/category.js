@@ -16,12 +16,5 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false
     }
   );
-  //   Category.associate = function(models) {
-  // eslint-disable-next-line prettier/prettier
-  // eslint-disable-next-line indent
-  //     Category.hasMany(models.Income, {
-  //       onDelete: "cascade"
-  //     });
-  //   };
   return Category;
 };
