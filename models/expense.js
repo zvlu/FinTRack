@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Expense = sequelize.define("Expense", {
     // The email cannot be null, and must be a proper email before creation
-    rentOrMortgage: {
+    date: {
       type: DataTypes.DECIMAL,
       allowNull: true,
       validate: {
@@ -9,44 +9,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     // The password cannot be null
-    gas: {
+    expenseAmt: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        len: [1, 10]
-      }
-    },
-    electricity: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        len: [1, 10]
-      }
-    },
-    cable: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        len: [1, 10]
-      }
-    },
-    foodAndGrocery: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        len: [1, 10]
-      }
-    },
-    car: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validate: {
-        len: [1, 10]
-      }
-    },
-    misc: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 10]
       }
@@ -60,7 +25,13 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
+    Expense.belongsTo(models.Category, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
   };
+
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   return Expense;
 };
