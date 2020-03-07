@@ -65,7 +65,7 @@ body {
   outline: none;
   color: white;
   padding: 14px 16px;
-  /* background-color: inherit; */
+  background-color: #4aaaa5;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
   /* margin-left: 420px; */
@@ -73,7 +73,7 @@ body {
 
 /* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #555555;
+  background-color: #4aaaa5;
   color: whitesmoke;
 }
 
@@ -100,7 +100,6 @@ body {
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #dddddd;
-  color: black;
 }
 
 /* Show the dropdown menu on hover */
@@ -157,5 +156,18 @@ h1 {
   border-top: #4aaaa5 solid 5px;
 }
 
+/* Members */
 
+#finInput{
+  border-radius: 50px;
+}
+
+
+/* Income */
+
+
+/* Expenses */
+
+
+/* Stock */
  
