@@ -2,3 +2,147 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image:url(../images/green_cup/green_cup.png);
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #777777;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  clear: both;
+}
+
+#main-head {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  margin: 0 0 30px;
+  overflow: auto;
+  color: #ffffff;
+  background: #ffffff;
+  padding: 17.5px;
+  border-bottom: #cccccc 3px solid;
+}
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  /* background-color: #333; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  /* font-size: 16px; */
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  /* background-color: inherit; */
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  /* margin-left: 420px; */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #555555;
+  color: whitesmoke;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  max-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #dddddd;
+  color: black;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: contents;
+}
+
+h1 {
+  font-weight: bold;
+  padding: 30px;
+  border-bottom: #cccccc 5px solid;
+  color: #4aaaa5;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+#fixed {
+  background: #4aaaa5;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  position: fixed;
+  padding: 35px;
+  text-align: center;
+  top: 0px;
+  left: 175px;
+  color: #ffffff;
+}
+
+#main-container {
+  padding-top: 130px;
+  min-height: calc(100vh - 70px);
+}
+
+.main-section {
+  float: left;
+  width: 100%;
+  background: #ffffff;
+  max-width: 960px;
+  margin: 0 0 40px;
+  padding: 30px;
+  border: #dddddd 2px solid;
+}
+
+
+ 
