@@ -58,13 +58,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   // establishing oen-to-many relationship with Income and Expense models
   User.associate = function(models) {
-    User.hasMany(models.Income, {
-      onDelete: "cascade"
-    });
-  };
-
-  User.associate = function(models) {
-    User.hasMany(models.Expense, {
+    User.hasMany(models.InAndOut, {
       onDelete: "cascade"
     });
   };

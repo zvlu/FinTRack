@@ -40,13 +40,22 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        firstName: req.user.firstName,
-        lastName: req.user.lastName,
-        email: req.user.email,
-        id: req.user.id
+      db.Bank.findOne({
+        where: {
+          UserId: req.user.id
+        }
+      }).then(function(dbBank) {
+        db.Portfolio.findOne({
+          where: {
+            UserId: req.user.id
+          }
+        }).then(function(dbPortfolio) {
+          res.json({
+            firstName: req.user.firstName,
+            currentBalance: dbBank.dataValues.currentBalance,
+            portfolioVal: dbPortfolio.dataValues.portfolioVal
+          });
+        });
       });
     }
   });
