@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Passport Authentication</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link href="stylesheets/style.css" rel="stylesheet">
+  <title>Income Sheet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS refernce sheets -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">  <link href="stylesheets/style.css" rel="stylesheet">
 </head>
-
 <body>
-    
+  <header id="main-head">
 
+    <div class="navbar" id="myNavbar">
+        <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
+        <div class="dropdown">
+            <button class="dropbtn submit">Menu
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="./members.html">Home</a>
+                <a href="./income.html">Income</a>
+                <a href="./expenses.html">Expenses</a>
+                <a href="/logout">Logout</a>               
+            </div>
+        </div>
+    </div>    
+  </header>
+
+
+    <div id="main-container" class="container">
+
+        <section class="main-section">
+
+
+            
+        </section>
+    </div>
+
+    <div class="footer">
+        <div class="container"> 
+            &copy; 2020 Gouda Bank, N.A. All rights reserved
+        </div>
+    </div>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/members.js"></script>
 
 </body>
+
 </html>
