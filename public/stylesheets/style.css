@@ -27,10 +27,15 @@ body {
   width: 100%;
   margin: 0 0 25px;
   overflow: auto;
-  color: #ffffff;
+
+  color: #d34b4b;
+  background: #ffffff;
+  padding: 17.5px;
+  border-bottom: #cccccc 3px solid;
+/*   color: #ffffff;
   font-family: 'Jacques Francois Shadow', cursive;
   background: white;
-  padding: 10px;
+  padding: 10px; */
 }
 
 /* Navbar container */
@@ -51,16 +56,36 @@ body {
   text-decoration: none;
 }
 
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;
+/*Modal*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Dropdown button */
-.dropdown .dropbtn {
-  font-size: 16px;
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
+
   font-family: 'Jacques Francois Shadow', cursive;
   border: none;
   outline: none;
@@ -76,24 +101,22 @@ body {
 .navbar a:hover, .dropdown:hover .dropbtn {
   color: black;
   background-color: #ffffff;
+
 }
 
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  max-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  float: none;
+.close:hover,
+.close:focus {
   color: black;
-  padding: 12px 16px;
   text-decoration: none;
+
+  cursor: pointer;
+}
+
+/*Ticker css*/
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-120%, 0, 0); }
+  
   display: block;
   text-align: left;
 }
@@ -127,21 +150,38 @@ h1 {
   top: 0px;
   left: 175px;
   color: gold;
-}
 
-#main-container {
-  padding-top: 130px;
-  min-height: calc(100vh - 70px);
 }
-
-.main-section {
-  float: left;
+.tcontainer{
   width: 100%;
   background: #ffffff;
   max-width: 960px;
   margin: 0 0 40px;
   padding: 30px;
   border: none;
+}
+
+
+.ticker-wrap {
+  width: 100%;
+  padding-left: 100%;
+  background-color: #eee;
+}
+.ticker-move {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 100%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: ticker;
+  animation-duration: 10s;
+}
+.ticker-move:hover{
+  animation-play-state: paused;
+}
+.ticker-item{
+  display: inline-block;
+  padding: 0 2rem;
 }
 
 .footer {
@@ -153,6 +193,9 @@ h1 {
   text-align: center;
   color: black;
   padding: 10px;
+
+  border-top: #4aaaa5 solid 5px;
+}
 }
 
 .footer:hover {
@@ -174,3 +217,4 @@ h1 {
 
 /* Stock */
  
+
