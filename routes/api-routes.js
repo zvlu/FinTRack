@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
@@ -36,21 +37,16 @@ module.exports = function(app) {
         name: req.body.category
       }
     }).then(function(dbCategory) {
-      console.log(dbCategory.dataValues.id);
-      console.log(req.body.date);
-      console.log(req.body.amount);
-      console.log(req.user.id);
       db.InAndOut.create({
         date: req.body.date,
         amount: req.body.amount,
         UserId: req.user.id,
         CategoryId: dbCategory.dataValues.id
       })
+        // eslint-disable-next-line no-unused-vars
         .then(function(dbInAndOut) {
           // res.json({ id: dbInAndOut.insertId });
           // res.redirect(307, "/api/login");
-          console.log(dbInAndOut);
-
           return res.sendStatus(200);
         })
         .catch(function(err) {
@@ -75,43 +71,58 @@ module.exports = function(app) {
         where: {
           UserId: req.user.id
         }
-      })
-        .then(function(dbBank) {
-          // console.log(dbBank);
-          return db.Portfolio.findOne({
-            where: {
-              UserId: req.user.id
+      }).then(function(dbBank) {
+        console.log(dbBank);
+        return db.Portfolio.findOne({
+          where: {
+            UserId: req.user.id
+          }
+        }).then(function(dbPortfolio) {
+          console.log(dbPortfolio);
+          return db.InAndOut.findAll({
+            attributes: [
+              sequelize.fn("sum", sequelize.col("amount"))
+            ],
+            where: { userId: req.user.id },
+            raw: true,
+            include: [{ model: db.Category }],
+            group: ["Category.type"]
+          }).then(function(dbJoin) {
+            var income;
+            var expense;
+            switch (dbJoin.length) {
+            case 0:
+              income = 0;
+              expense = 0;
+              break;
+            case 1:
+              if(dbJoin[0]["Category.type"] === "income"){
+                income = dbJoin[0]["sum(`amount`)"];
+                expense = 0;
+              }
+              expense = dbJoin[0]["sum(`amount`)"];
+              income = 0;
+              break;
+            case 2:
+              income = dbJoin[0]["sum(`amount`)"];
+              expense = dbJoin[1]["sum(`amount`)"];
+              break;
             }
-          }).then(function(dbPortfolio) {
-            console.log(dbPortfolio);
-            return db.InAndOut.findAll({
-              attributes: [
-                // "db.Category.type",
-                sequelize.fn("sum", sequelize.col("amount"))
-              ],
-              where: { userId: req.user.id },
-              raw: true,
-              include: [{ model: db.Category }],
-              group: ["Category.type"]
-            }).then(function(dbJoin) {
-              console.log(dbJoin[0]["sum(`amount`)"]);
-              res.json({
-                firstName: req.user.firstName,
-                currentBalance:
-                  dbBank === null ? "" : dbBank.dataValues.currentBalance,
-                portfolioVal:
-                  dbPortfolio === null
-                    ? ""
-                    : dbPortfolio.dataValues.portfolioVal,
-                income: dbJoin === null ? "" : dbJoin[0]["sum(`amount`)"],
-                expense: dbJoin === null ? "" : dbJoin[1]["sum(`amount`)"]
-              });
+            res.json({
+              firstName: req.user.firstName,
+              currentBalance:
+                dbBank === null ? 0 : dbBank.dataValues.currentBalance,
+              portfolioVal:
+                dbPortfolio === null ? 0 : dbPortfolio.dataValues.portfolioVal,
+              income: income,
+              expense: expense
             });
           });
-        })
+        });
+      })
         .catch(function(err) {
           return res.json(err);
-          // res.status(404).send("Not Found");
+        // res.status(404).send("Not Found");
         });
     }
   });
