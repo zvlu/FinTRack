@@ -4,7 +4,7 @@ use expense_tracker;
 insert into users (firstName,lastName,email,password) VALUES ("Andrew","LN","and@gmail.com","andr");
 select * from users;
 
-insert into bank (currentBalance,userId) values (10456.89, 2);
+insert into bank (currentBalance,userId) values (8800, 3);
 select * from bank;
 
 insert into categories (type, name) values ("income", "Primary"), ("income", "Secondary"), ("income", "Supplementary"), ("expense", "Mortgage"), ("expense", "Rent"),
@@ -13,12 +13,14 @@ insert into categories (type, name) values ("income", "Primary"), ("income", "Se
                                             
 select * from categories;
 
-insert into portfolio (portfolioVal, userId) values (8000, 2);
+insert into portfolio (portfolioVal, userId) values (8000, 1);
 select * from portfolio;
 
 insert into inandouts (date,amount,UserId,CategoryId) values (curdate(), 10545,1, 1), (curdate(), 1500,1,4), (curdate(), 350,1,6), (curdate(), 50,1,7),
 															(curdate(), 9000,2,1), (curdate(), 1350,2,2), (curdate(), 2000,2,4),(curdate(), 150,2,8);
-insert into inandouts (date,amount,UserId,CategoryId) values (curdate()-2, 90,2,10);
+insert into inandouts (date,amount,UserId,CategoryId) values (curdate()-2 , 90,1,10);
 select * from inandouts; 
+insert into inandouts (date,amount,UserId,CategoryId) values (curdate()-3, 1000, 1,( Select id from categories where name="Secondary"));
 
 
+select sum(amount), categories.type  from inandouts join categories on inandouts.CategoryId = categories.id where userId= 1 and categories.type="income";
