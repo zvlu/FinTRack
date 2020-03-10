@@ -75,41 +75,44 @@ module.exports = function(app) {
         where: {
           UserId: req.user.id
         }
-      }).then(function(dbBank) {
-        // console.log(dbBank);
-        return db.Portfolio.findOne({
-          where: {
-            UserId: req.user.id
-          }
-        }).then(function(dbPortfolio) {
-          console.log(dbPortfolio);
-          return db.InAndOut.findAll({
-            attributes: [
-              // "db.Category.type",
-              sequelize.fn("sum", sequelize.col("amount"))
-            ],
-            where: { userId: req.user.id },
-            raw: true,
-            include: [{ model: db.Category }],
-            group: ["Category.type"]
-          }).then(function(dbJoin) {
-            console.log(dbJoin[0]['sum(`amount`)']);
-            res.json({
-              firstName: req.user.firstName,
-              currentBalance:
-                dbBank === null ? "" : dbBank.dataValues.currentBalance,
-              portfolioVal:
-                dbPortfolio === null ? "" : dbPortfolio.dataValues.portfolioVal,
-              income: dbJoin === null ? "" : dbJoin[0]['sum(`amount`)'],
-              expense: dbJoin === null ? "" : dbJoin[1]['sum(`amount`)']
+      })
+        .then(function(dbBank) {
+          // console.log(dbBank);
+          return db.Portfolio.findOne({
+            where: {
+              UserId: req.user.id
+            }
+          }).then(function(dbPortfolio) {
+            console.log(dbPortfolio);
+            return db.InAndOut.findAll({
+              attributes: [
+                // "db.Category.type",
+                sequelize.fn("sum", sequelize.col("amount"))
+              ],
+              where: { userId: req.user.id },
+              raw: true,
+              include: [{ model: db.Category }],
+              group: ["Category.type"]
+            }).then(function(dbJoin) {
+              console.log(dbJoin[0]["sum(`amount`)"]);
+              res.json({
+                firstName: req.user.firstName,
+                currentBalance:
+                  dbBank === null ? "" : dbBank.dataValues.currentBalance,
+                portfolioVal:
+                  dbPortfolio === null
+                    ? ""
+                    : dbPortfolio.dataValues.portfolioVal,
+                income: dbJoin === null ? "" : dbJoin[0]["sum(`amount`)"],
+                expense: dbJoin === null ? "" : dbJoin[1]["sum(`amount`)"]
+              });
             });
           });
+        })
+        .catch(function(err) {
+          return res.json(err);
+          // res.status(404).send("Not Found");
         });
-      });
-      .catch(function(err) {
-        return res.json(err);
-        // res.status(404).send("Not Found");
-      });
     }
   });
 };
