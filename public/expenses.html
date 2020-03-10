@@ -9,6 +9,34 @@
 </head>
 
 <body>
+    <form class="Expense">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="text" class="form-control" id="date-pick" placeholder="YYYY-MM-DD">
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+          <label>Type of Expense</label>
+          <!-- <input type="text" class="form-control" id="lName-input" placeholder="Last Name"> -->
+          <select class="custom-select" id="expense-type">
+            <option selected>Choose...</option>
+            <option value="1">Mortgage</option>
+            <option value="2">Rent</option>
+            <option value="3">Car</option>
+            <option value="3">Gas</option>
+            <option value="3">Electricity</option>
+            <option value="3">Entertainment</option>
+            <option value="3">Misc</option>
+          </select>
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+          <label>Amount</label>
+          <input type="text" class="form-control" id="expense-amt" placeholder="$">
+        <!-- </div> -->
+        <button type="submit" class="btn btn-default">Save</button>
+        </div>
+      </form>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="js/Expense.js"></script>
     
 </body>
 </html>
