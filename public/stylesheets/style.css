@@ -25,12 +25,17 @@ body {
   position: fixed;
   z-index: 99;
   width: 100%;
-  margin: 0 0 30px;
+  margin: 0 0 25px;
   overflow: auto;
+
   color: #d34b4b;
   background: #ffffff;
   padding: 17.5px;
   border-bottom: #cccccc 3px solid;
+/*   color: #ffffff;
+  font-family: 'Jacques Francois Shadow', cursive;
+  background: white;
+  padding: 10px; */
 }
 
 /* Navbar container */
@@ -80,12 +85,30 @@ body {
   float: right;
   font-size: 28px;
   font-weight: bold;
+
+  font-family: 'Jacques Francois Shadow', cursive;
+  border: none;
+  outline: none;
+  color: gold;
+  padding: 14px 16px;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvlJx3QL3vQE0NQlNr-WcaH0UOVosiNGK56L2CGNxJrW280jgJ&s);
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  /* margin-left: 420px; */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  color: black;
+  background-color: #ffffff;
+
 }
 
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
+
   cursor: pointer;
 }
 
@@ -93,6 +116,41 @@ body {
 @keyframes ticker {
   0% { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-120%, 0, 0); }
+  
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #dddddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: contents;
+}
+
+h1 {
+  font-weight: bold;
+  padding: 30px;
+  border-bottom: #cccccc 5px solid;
+  color: #4aaaa5;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+#fixed {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvlJx3QL3vQE0NQlNr-WcaH0UOVosiNGK56L2CGNxJrW280jgJ&s);
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  position: fixed;
+  padding: 25px;
+  text-align: center;
+  top: 0px;
+  left: 175px;
+  color: gold;
+
 }
 .tcontainer{
   width: 100%;
@@ -127,14 +185,36 @@ body {
 }
 
 .footer {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #666666;
-  font-size: 20px;
+  font-size: 12px;
   text-align: center;
-  color: #ffffff;
+  color: black;
   padding: 10px;
+
   border-top: #4aaaa5 solid 5px;
 }
+}
+
+.footer:hover {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GE5NdxlrJp8AnWSyiuAyqndiRBIT-q3BvoaWCL_CNjFJJxVbOQ&s);
+}
+
+/* Members */
+
+#finInput{
+  border-radius: 50px;
+}
+
+
+/* Income */
+
+
+/* Expenses */
+
+
+/* Stock */
+ 
+

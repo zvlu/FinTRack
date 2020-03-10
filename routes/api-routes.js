@@ -30,6 +30,32 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/expense", function(req, res) {
+    console.log("user id " + req.user.id);
+    return db.Category.findOne({
+      where: {
+        name: req.body.category
+      }
+    }).then(function(dbCategory) {
+      db.InAndOut.create({
+        date: req.body.date,
+        amount: req.body.amount,
+        UserId: req.user.id,
+        CategoryId: dbCategory.dataValues.id
+      })
+        // eslint-disable-next-line no-unused-vars
+        .then(function(dbInAndOut) {
+          // res.json({ id: dbInAndOut.insertId });
+          // res.redirect(307, "/api/login");
+          return res.sendStatus(200);
+        })
+        .catch(function(err) {
+          res.status(500).json(err);
+        });
+    });
+  });
+
+
   app.post("/api/income", function(req, res) {
     console.log("user id " + req.user.id);
     return db.Category.findOne({
@@ -99,6 +125,7 @@ module.exports = function(app) {
               if(dbJoin[0]["Category.type"] === "income"){
                 income = dbJoin[0]["sum(`amount`)"];
                 expense = 0;
+                break;
               }
               expense = dbJoin[0]["sum(`amount`)"];
               income = 0;
@@ -126,6 +153,53 @@ module.exports = function(app) {
         });
     }
   });
+  app.post("/api/user_data", function (req, res) {
+    console.log("user id " + req.user.id);
+    console.log("body " + typeof req.body.bshare);
+    db.Bank.findOne({
+      where: {
+        userId: req.user.id
+      }
+    }).then(function(dbBankOne){
+      if(dbBankOne){
+        db.Bank.update(
+          {currentBalance: parseFloat(dbBankOne.dataValues.currentBalance) + parseFloat(req.body.bshare)},
+          {
+            where:{ UserId: dbBankOne.dataValues.UserId}
+          }
+        ).then(function(updated){
+          res.status(200).send("Updated " +updated);
+        });
+      }
+      else{
+        db.Bank.create({
+          currentBalance: req.body.bshare,
+          UserId: req.user.id
+        }).then(function(created){
+          res.status(200).send("Created " +created);
+        });
+      }
+    }).catch(function(err){
+      console.log("ERROR! " + err.name + ": " + err.message);
+      res.status(500).send(err.message);
+    });
+    // db.Bank.upsert({
+    //   where: {
+    //     UserId: req.user.id
+    //   },
+    //   currentBalance: (db.Bank.currentBalance + req.body.bshare)
+      
+    // }).then(function (test) {
+    //   if(test){
+    //     res.status(200);
+    //     res.send("Successfully stored");
+    //   }else{
+    //     res.status(200);
+    //     res.send("Successfully inserted");
+    //   }
+    // });
+
+  });  
 };
 
 // app.get("/api/v3")
