@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>Members Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,7 +12,6 @@
 </head>
 <body>
   <header id="main-head">
-
     <div class="navbar" id="myNavbar">
         <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
         <div class="dropdown">
@@ -23,68 +22,66 @@
                 <a href="./members.html">Home</a>
                 <a href="./income.html">Income</a>
                 <a href="./expenses.html">Expenses</a>
-                <a href="/logout">Logout</a>
+
+                <a href="/logout">Logout</a>               
             </div>
         </div>
     </div>    
   </header>
 
 
-  <div id="main-container" class="container">
-    
-    <section class="main-section">
+<div id="main-container" class="container">
+  <section class="main-section">
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Stock Portfolio<span class="stocks"></span></h2>
-        <input id="stock" type="text" readonly>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>Stock Portfolio<span class="stocks"></span></h2>
+          <input class="finInput" id="stock" type="text" readonly>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Bank Account<span class="stocks"></span></h2>
-        <input id="bank" type="text" readonly>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>Bank Account<span class="stocks"></span></h2>
+          <input id="bank" class="finInput" type="text" readonly>
+        </div>
       </div>
-     
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Income<span class="stocks"></span></h2>
-        <input id="income" type="text" readonly>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>Income<span class="stocks"></span></h2>
+          <input id="income" class="finInput" type="text" readonly>
+        </div>
       </div>
-      
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Expenses<span class="stocks"></span></h2>
-        <input id="expenses" type="text" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>Expenses<span class="stocks"></span></h2>
+          <input id="expenses" class="finInput" type="text" readonly>
+        </div>
       </div>
-     
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Income Reserves<span class="stocks"></span></h2>
-        <input id="income-reserves" type="text" readonly>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>Income Reserves<span class="stocks"></span></h2>
+          <input id="income-reserves" class="finInput" type="text" readonly>
+        </div>
       </div>
-     
     </div>
 
+  </section>
 </div>
 </section>
 </div>
 
   <div class="footer">
     <div class="container"> 
-        Copyright &copy;
+      &copy; 2020 Gouda Bank, N.A. All rights reserved
     </div>
   </div>
   
