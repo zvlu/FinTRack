@@ -3,6 +3,53 @@ form.login {
   margin-top: 50px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* background-image:url(../images/green_cup/green_cup.png); */
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #777777;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  clear: both;
+}
+
+#main-head {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  margin: 0 0 30px;
+  overflow: auto;
+  color: #d34b4b;
+  background: #ffffff;
+  padding: 17.5px;
+  border-bottom: #cccccc 3px solid;
+}
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  /* background-color: #333; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  /* font-size: 16px; */
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
 /*Modal*/
 .modal {
@@ -49,8 +96,14 @@ form.login {
 }
 .tcontainer{
   width: 100%;
-  overflow: hidden;
+  background: #ffffff;
+  max-width: 960px;
+  margin: 0 0 40px;
+  padding: 30px;
+  border: none;
 }
+
+
 .ticker-wrap {
   width: 100%;
   padding-left: 100%;
@@ -71,4 +124,17 @@ form.login {
 .ticker-item{
   display: inline-block;
   padding: 0 2rem;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #666666;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+  padding: 10px;
+  border-top: #4aaaa5 solid 5px;
 }

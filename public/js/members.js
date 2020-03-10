@@ -1,6 +1,7 @@
 $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
+<<<<<<< HEAD
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.firstName);
     $(".stocks").text();
@@ -84,4 +85,22 @@ $(document).ready(function() {
     });
   }
   tickerRender();
+=======
+  $.get("/api/user_data")
+    .then(function(data) {
+      console.log(data);
+      $(".member-name").text(data.firstName);
+      $("#bank").val(data.currentBalance);
+      $("#stock").val(data.portfolioVal);
+      $("#income").val(data.income);
+      $("#expenses").val(data.expense);
+      $("#income-reserves").val(
+        parseFloat(data.income) - parseFloat(data.expense)
+      );
+    })
+    .catch(function(err) {
+      console.log("error");
+      console.log(err);
+    });
+>>>>>>> d2d6ade257e7f9b081cef842432dfa681f1efeee
 });
