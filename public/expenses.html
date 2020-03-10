@@ -1,14 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Passport Authentication</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link href="stylesheets/style.css" rel="stylesheet">
-</head>
 
+<head>
+  <title>Income Sheet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS refernce sheets -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">  <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+
+</head>
 <body>
-    
+
+  <header id="main-head">
+
+    <div class="navbar" id="myNavbar">
+        <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
+        <div class="dropdown">
+            <button class="dropbtn submit">Menu
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="./members.html">Home</a>
+                <a href="./income.html">Income</a>
+                <a href="./expenses.html">Expenses</a>
+                <a href="/logout">Logout</a>               
+            </div>
+        </div>
+    </div>    
+  </header>
+
+
+    <div id="main-container" class="container">
+
+        <section class="main-section">
+
+<form class="Expense">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="text" class="form-control" id="date-pick" placeholder="YYYY-MM-DD">
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+          <label>Type of Expense</label>
+          <!-- <input type="text" class="form-control" id="lName-input" placeholder="Last Name"> -->
+          <select class="custom-select" id="expense-type">
+            <option selected>Choose...</option>
+            <option value="1">Mortgage</option>
+            <option value="2">Rent</option>
+            <option value="3">Car</option>
+            <option value="3">Gas</option>
+            <option value="3">Electricity</option>
+            <option value="3">Entertainment</option>
+            <option value="3">Misc</option>
+          </select>
+        <!-- </div> -->
+        <!-- <div class="form-group"> -->
+          <label>Amount</label>
+          <input type="text" class="form-control" id="expense-amt" placeholder="$">
+        <!-- </div> -->
+        <button type="submit" class="btn btn-default">Save</button>
+        </div>
+      </form>
+            
+        </section>
+    </div>
+
+    <div class="footer">
+        <div class="container"> 
+            &copy; 2020 Gouda Bank, N.A. All rights reserved
+        </div>
+    </div>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/expense.js"></script>
+
 </body>
+
 </html>

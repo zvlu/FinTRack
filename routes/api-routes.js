@@ -29,7 +29,33 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
-  
+
+  app.post("/api/expense", function(req, res) {
+    console.log("user id " + req.user.id);
+    return db.Category.findOne({
+      where: {
+        name: req.body.category
+      }
+    }).then(function(dbCategory) {
+      db.InAndOut.create({
+        date: req.body.date,
+        amount: req.body.amount,
+        UserId: req.user.id,
+        CategoryId: dbCategory.dataValues.id
+      })
+        // eslint-disable-next-line no-unused-vars
+        .then(function(dbInAndOut) {
+          // res.json({ id: dbInAndOut.insertId });
+          // res.redirect(307, "/api/login");
+          return res.sendStatus(200);
+        })
+        .catch(function(err) {
+          res.status(500).json(err);
+        });
+    });
+  });
+
+
   app.post("/api/income", function(req, res) {
     console.log("user id " + req.user.id);
     return db.Category.findOne({
