@@ -34,7 +34,7 @@ $(document).ready(function() {
       // eslint-disable-next-line no-unused-vars
       .then(function(data) {
         console.log(data);
-        window.location.replace("/expense");
+        location.reload();
       })
       .catch(handleLoginErr);
   }
