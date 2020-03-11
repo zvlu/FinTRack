@@ -180,13 +180,10 @@ h1 {
 }
 
 .tcontainer{
-  width: 100%;
-  
-  max-width: 960px;
-  margin: 0 0 auto;
-  padding: 30px; 
-  border: none;  
+  padding: 30px;
+  border: none;
   overflow: hidden;
+
 }
 
 
