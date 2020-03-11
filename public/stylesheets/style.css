@@ -161,11 +161,21 @@ h1 {
 
 .finInput{
   border-radius: 50px;
+
+}
+.finInput:focus{
+  outline: none;
 }
 
 
 /* Income */
-
+.ph-container{
+  width: 100%;
+  height: 100px;
+}
+ul#incomes li{
+  display: inline;
+}
 
 /* Expenses */
 

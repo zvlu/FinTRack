@@ -23,4 +23,4 @@ select * from inandouts;
 insert into inandouts (date,amount,UserId,CategoryId) values (curdate()-3, 1000, 1,( Select id from categories where name="Secondary"));
 
 select * from inandouts join categories on inandouts.CategoryId = categories.id where UserId =1;
-select sum(amount), categories.type  from inandouts join categories on inandouts.CategoryId = categories.id where userId= 1 GROUP BY categories.type;
+select sum(amount), categories.type  from inandouts join categories on inandouts.CategoryId = categories.id where userId= 12 GROUP BY categories.type;

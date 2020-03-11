@@ -38,7 +38,6 @@ $(document).ready(function() {
       console.log("error");
       console.log(err);
     });
-  
 
   $("#submit").on("click", function(event) {
     console.log("allocate clicked");
