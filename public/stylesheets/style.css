@@ -178,22 +178,22 @@ h1 {
   display: block;
   text-align: left;
   0% { transform: translate3d(0, 0, 0); };
-  100% { transform: translate3d(-120%, 0, 0); };
+  100% { transform: translate3d(-100%, 0, 0); };
 }
 
 .tcontainer{
   width: 100%;
   background: #ffffff;
-  /* max-width: 960px; */
+  max-width: 960px;
   margin: 0 0 auto;
-  padding: 30px;
+  padding: 40px;
   border: none;
 }
 
 
 .ticker-wrap {
   width: 100%;
-  /* padding-left: 100%; */
+  padding-left: 100%;
   background-color: #eee;
 }
 .ticker-move {
