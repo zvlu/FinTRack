@@ -30,61 +30,61 @@ $(document).ready(function() {
   //       modal.style.display = "none";
   //     }
   //   };
-  //   function tickerRender() {
-  //     var queryUrl = "https://financialmodelingprep.com/api/v3/majors-indexes";
-  //     $.ajax({
-  //       url: queryUrl,
-  //       method: "GET"
-  //     }).then(function(response) {
-  //       console.log(response);
-  //       $("#stock-1").text(
-  //         response.majorIndexesList[0].indexName +
-  //           " " +
-  //           response.majorIndexesList[0].price
-  //       );
-  //       $("#stock-2").text(
-  //         response.majorIndexesList[1].indexName +
-  //           " " +
-  //           response.majorIndexesList[1].price
-  //       );
-  //       $("#stock-3").text(
-  //         response.majorIndexesList[2].indexName +
-  //           " " +
-  //           response.majorIndexesList[2].price
-  //       );
-  //       $("#stock-4").text(
-  //         response.majorIndexesList[3].indexName +
-  //           " " +
-  //           response.majorIndexesList[3].price
-  //       );
-  //       $("#stock-5").text(
-  //         response.majorIndexesList[4].indexName +
-  //           " " +
-  //           response.majorIndexesList[4].price
-  //       );
-  //       $("#stock-6").text(
-  //         response.majorIndexesList[5].indexName +
-  //           " " +
-  //           response.majorIndexesList[5].price
-  //       );
-  //       $("#stock-7").text(
-  //         response.majorIndexesList[6].indexName +
-  //           " " +
-  //           response.majorIndexesList[6].price
-  //       );
-  //       $("#stock-8").text(
-  //         response.majorIndexesList[7].indexName +
-  //           " " +
-  //           response.majorIndexesList[7].price
-  //       );
-  //       $("#stock-9").text(
-  //         response.majorIndexesList[8].indexName +
-  //           " " +
-  //           response.majorIndexesList[8].price
-  //       );
-  //     });
-  //   }
-  //   tickerRender();
+  function tickerRender() {
+    var queryUrl = "https://financialmodelingprep.com/api/v3/majors-indexes";
+    $.ajax({
+      url: queryUrl,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      $("#stock-1").text(
+        response.majorIndexesList[0].indexName +
+          " " +
+          response.majorIndexesList[0].price
+      );
+      $("#stock-2").text(
+        response.majorIndexesList[1].indexName +
+          " " +
+          response.majorIndexesList[1].price
+      );
+      $("#stock-3").text(
+        response.majorIndexesList[2].indexName +
+          " " +
+          response.majorIndexesList[2].price
+      );
+      $("#stock-4").text(
+        response.majorIndexesList[3].indexName +
+          " " +
+          response.majorIndexesList[3].price
+      );
+      $("#stock-5").text(
+        response.majorIndexesList[4].indexName +
+          " " +
+          response.majorIndexesList[4].price
+      );
+      $("#stock-6").text(
+        response.majorIndexesList[5].indexName +
+          " " +
+          response.majorIndexesList[5].price
+      );
+      $("#stock-7").text(
+        response.majorIndexesList[6].indexName +
+          " " +
+          response.majorIndexesList[6].price
+      );
+      $("#stock-8").text(
+        response.majorIndexesList[7].indexName +
+          " " +
+          response.majorIndexesList[7].price
+      );
+      $("#stock-9").text(
+        response.majorIndexesList[8].indexName +
+          " " +
+          response.majorIndexesList[8].price
+      );
+    });
+  }
+  tickerRender();
 
   var bshare;
   var pshare;

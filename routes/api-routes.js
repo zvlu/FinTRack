@@ -156,13 +156,13 @@ module.exports = function(app) {
   app.post("/api/user_data", function (req, res) {
     console.log("user id " + req.user.id);
     console.log("body " + typeof req.body.bshare);
-    db.Bank.findOne({
+    return db.Bank.findOne({
       where: {
         userId: req.user.id
       }
     }).then(function(dbBankOne){
       if(dbBankOne){
-        db.Bank.update(
+        return db.Bank.update(
           {currentBalance: parseFloat(dbBankOne.dataValues.currentBalance) + parseFloat(req.body.bshare)},
           {
             where:{ UserId: dbBankOne.dataValues.UserId}
@@ -172,7 +172,7 @@ module.exports = function(app) {
         });
       }
       else{
-        db.Bank.create({
+        return db.Bank.create({
           currentBalance: req.body.bshare,
           UserId: req.user.id
         }).then(function(created){
