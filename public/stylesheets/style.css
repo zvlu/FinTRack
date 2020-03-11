@@ -27,21 +27,15 @@ body {
   width: 100%;
   margin: 0 0 25px;
   overflow: auto;
-
-  color: #d34b4b;
-  background: #ffffff;
-  padding: 17.5px;
-  border-bottom: #cccccc 3px solid;
-/*   color: #ffffff;
+  color: #ffffff;
   font-family: 'Jacques Francois Shadow', cursive;
   background: white;
-  padding: 10px; */
+  padding: 10px;
 }
 
 /* Navbar container */
 .navbar {
   overflow: hidden;
-  /* background-color: #333; */
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -56,42 +50,22 @@ body {
   text-decoration: none;
 }
 
-/*Modal*/
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
   font-weight: bold;
-
   font-family: 'Jacques Francois Shadow', cursive;
   border: none;
   outline: none;
   color: gold;
   padding: 14px 16px;
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvlJx3QL3vQE0NQlNr-WcaH0UOVosiNGK56L2CGNxJrW280jgJ&s);
+  background-image: url(../images.jfif);
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
   /* margin-left: 420px; */
@@ -101,22 +75,24 @@ body {
 .navbar a:hover, .dropdown:hover .dropbtn {
   color: black;
   background-color: #ffffff;
-
 }
 
-.close:hover,
-.close:focus {
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  max-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
   color: black;
+  padding: 12px 16px;
   text-decoration: none;
-
-  cursor: pointer;
-}
-
-/*Ticker css*/
-@keyframes ticker {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-120%, 0, 0); }
-  
   display: block;
   text-align: left;
 }
@@ -141,7 +117,7 @@ h1 {
 
 
 #fixed {
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvlJx3QL3vQE0NQlNr-WcaH0UOVosiNGK56L2CGNxJrW280jgJ&s);
+  background-image: url(../images.jfif);
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
   position: fixed;
@@ -150,9 +126,14 @@ h1 {
   top: 0px;
   left: 175px;
   color: gold;
-
 }
-.tcontainer{
+
+#main-container {
+  min-height: calc(100vh - 70px);
+}
+
+.main-section {
+  float: left;
   width: 100%;
   background: #ffffff;
   max-width: 960px;
@@ -161,10 +142,58 @@ h1 {
   border: none;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  color: black;
+  padding: 10px;
+}
+
+.footer:hover {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GE5NdxlrJp8AnWSyiuAyqndiRBIT-q3BvoaWCL_CNjFJJxVbOQ&s);
+}
+
+/* Members */
+
+.finInput{
+  border-radius: 50px;
+}
+
+
+/* Income */
+
+
+/* Expenses */
+
+
+/* Stock */
+ 
+
+/*Ticker css*/
+@keyframes ticker {
+  display: block;
+  text-align: left;
+  0% { transform: translate3d(0, 0, 0); };
+  100% { transform: translate3d(-120%, 0, 0); };
+}
+
+.tcontainer{
+  width: 100%;
+  background: #ffffff;
+  /* max-width: 960px; */
+  margin: 0 0 auto;
+  padding: 30px;
+  border: none;
+}
+
 
 .ticker-wrap {
   width: 100%;
-  padding-left: 100%;
+  /* padding-left: 100%; */
   background-color: #eee;
 }
 .ticker-move {
@@ -183,38 +212,4 @@ h1 {
   display: inline-block;
   padding: 0 2rem;
 }
-
-.footer {
-  /* position: fixed; */
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  color: black;
-  padding: 10px;
-
-  border-top: #4aaaa5 solid 5px;
-}
-}
-
-.footer:hover {
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GE5NdxlrJp8AnWSyiuAyqndiRBIT-q3BvoaWCL_CNjFJJxVbOQ&s);
-}
-
-/* Members */
-
-#finInput{
-  border-radius: 50px;
-}
-
-
-/* Income */
-
-
-/* Expenses */
-
-
-/* Stock */
- 
 
