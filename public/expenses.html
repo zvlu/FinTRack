@@ -2,71 +2,50 @@
 <html lang="en">
 
 <head>
-    <title>Income</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-         <!-- CSS refernce sheets -->
-<!--   <link rel="stylesheet" href="./assets/css/reset.css"> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">  
-  <link href="stylesheets/style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+  <title>Expenses</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" href="./stylesheets/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  
 </head>
+
 <body>
-<div class="tcontainer">
+    <header id="main-head">
+      <div class="navbar" id="myNavbar">
+          <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
+          <div class="dropdown">
+              <button class="dropbtn submit">Menu
+                  <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                  <a href="./members.html">Home</a>
+                  <a href="./income.html">Income</a>
+                  <a href="./expenses.html">Expenses</a>
+                  <a href="/logout">Logout</a>               
+              </div>
+          </div>
+      </div>    
+    </header><br>
+  <div class="tcontainer">
     <div class="ticker-wrap">
         <div class="ticker-move">
-        <div class="ticker-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div class="ticker-item">Aliquam consequat varius consequat.</div>
-        <div class="ticker-item">Fusce dapibus turpis vel nisi malesuada sollicitudin.</div>
-        <div class="ticker-item">Pellentesque auctor molestie orci ut blandit.</div>
+        <div class="ticker-item" id="stock-1"></div>
+        <div class="ticker-item" id="stock-2"></div>
+        <div class="ticker-item" id="stock-3"></div>
+        <div class="ticker-item" id="stock-4"></div>
+        <div class="ticker-item" id="stock-5"></div>
+        <div class="ticker-item" id="stock-6"></div>
+        <div class="ticker-item" id="stock-7"></div>
+        <div class="ticker-item" id="stock-8"></div>
+        <div class="ticker-item" id="stock-9"></div>
         </div>
     </div>
-</div>
-<!--     <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <h2>Expenses</h2>
-            <form>
-                <label for="Expenses">:</label>
-                <select id="expenses" name="expenses">
-                  <option value="HOUSING COST"><span></span></option>
-                  <option value="UTIL"><span></span></option>
-                  <option value="CAR PAYMENT"><span></span></option>
-                  <option value="Entertainment"><span></span></option>
-                  <option value="GAS"><span></span></option>
-                  <option value="Clothing"><span></span></option>
-                  <option value="FOOD"><span></span></option>
-                
-
-                  
-                </select>
-                <input type="submit">
-
-
-              </form>
-
-          </div>
-        </div>
-      </div>
- -->
-  <header id="main-head">
-
-    <div class="navbar" id="myNavbar">
-        <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
-        <div class="dropdown">
-            <button class="dropbtn submit">Menu
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="./members.html">Home</a>
-                <a href="./income.html">Income</a>
-                <a href="./expenses.html">Expenses</a>
-                <a href="/logout">Logout</a>               
-            </div>
-        </div>
-    </div>    
-  </header>
+  </div>
 
 
     <div id="main-container" class="container">
