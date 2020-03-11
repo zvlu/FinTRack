@@ -175,26 +175,25 @@ h1 {
 
 /*Ticker css*/
 @keyframes ticker {
-  display: block;
-  text-align: left;
-  0% { transform: translate3d(0, 0, 0); };
-  100% { transform: translate3d(-100%, 0, 0); };
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-120%, 0, 0); }
 }
 
 .tcontainer{
   width: 100%;
-  background: #ffffff;
+  
   max-width: 960px;
   margin: 0 0 auto;
-  padding: 40px;
-  border: none;
+  padding: 30px; 
+  border: none;  
+  overflow: hidden;
 }
 
 
 .ticker-wrap {
   width: 100%;
   padding-left: 100%;
-  background-color: #eee;
+  
 }
 .ticker-move {
   display: inline-block;
