@@ -15,29 +15,7 @@
 </head>
 
 <body>
-<!--     <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <h2>Income</h2>
-            <form>
-                <label for="Income">Choose an Income:</label>
-                <select id="income" name="income">
-                  <option value="main-income"><span></span></option>
-                  <option value="part-time"><span></span></option>
-                  <option value="misc"><span></span></option>
-                  
-                </select>
-                <input type="submit">
-              </form>
-
-          </div>
-        </div>
-      </div> -->
-
-    
-<!--     <form class="income"> -->
   <header id="main-head">
-
     <div class="navbar" id="myNavbar">
         <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
         <div class="dropdown">
@@ -55,48 +33,34 @@
   </header>
 
 
-    <div id="main-container" class="container">
-
-        <section class="main-section">
-
-  <form class="income">
+  <div id="main-container" class="container">
+    <section class="main-section">
+      <form class="income">
         <div class="form-group">
           <label>Date</label>
           <input type="text" class="form-control" id="date-pick" placeholder="YYYY-MM-DD">
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
           <label>Type of Income</label>
-          <!-- <input type="text" class="form-control" id="lName-input" placeholder="Last Name"> -->
           <select class="custom-select" id="income-type">
             <option selected>Choose...</option>
             <option value="1">Primary</option>
             <option value="2">Secondary</option>
             <option value="3">Supplementary</option>
           </select>
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
           <label>Amount</label>
           <input type="text" class="form-control" id="income-amt" placeholder="$">
-        <!-- </div> -->
-        <button type="submit" class="btn btn-default">Save</button>
+          <button type="submit" class="btn btn-default">Save</button>
         </div>
       </form>
+    </section>
+  </div>
 
-            
-        </section>
+  <div class="footer">
+    <div class="container"> 
+      &copy; 2020 Gouda Bank, N.A. All rights reserved
     </div>
-
-    <div class="footer">
-        <div class="container"> 
-            &copy; 2020 Gouda Bank, N.A. All rights reserved
-        </div>
-    </div>
+  </div>
   
- 
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="js/income.js"></script>
-<!-- >>>>>>> d2d6ade257e7f9b081cef842432dfa681f1efeee -->
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/income.js"></script>
 </body>
-
 </html>
