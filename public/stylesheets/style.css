@@ -163,6 +163,10 @@ h1 {
   border-radius: 50px;
 }
 
+.finInput:focus {
+  outline: 0px
+}
+
 
 /* Income */
 
