@@ -1,67 +1,48 @@
 $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  var bshare;
-  var pshare;
-
+  let bshare = 0;
+  let pshare = 0;
+  let populated = false;
+  let currentBalance = 0;
+  let portfolioVal = 0;
   $.get("/api/user_data")
     .then(function(data) {
       if (data) {
-        $(".member-name").text(data.firstName);
-        $("#bank").val(data.currentBalance);
-        $("#stock").val(data.portfolioVal);
-        $("#income").val(data.income);
-        $("#expenses").val(data.expense);
-        var incomeReserve = parseFloat(data.income) - parseFloat(data.expense);
-        $("#income-reserves").val(incomeReserve);
-        if ($("#income-reserves").val() > 0) {
-          $("#bankshare").attr("disabled", false);
-          $("#bankshare").focus();
-          $(".bshare").text("");
-          $("#bankshare").focusout(function() {
-            var bankperc = parseFloat($("#bankshare").val());
-            bshare = (incomeReserve * 0.01 * bankperc).toFixed(2);
-            pshare = (incomeReserve - bshare).toFixed(2);
-            console.log(bshare);
-            console.log(pshare);
-            $("#portshare").val(100 - bankperc);
-            $(".bshare").text(bshare);
-            $(".pshare").text(pshare);
-          });
-        }
+        populate(data);
       }
-      if (data.dbJoinChart.length) {
-        console.log(data.dbJoinChart[0].amount);
-        console.log(data.dbJoinChart[0]["Category.type"]);
-        var incomes = [];
-        var expenses = [];
-        for (i = 0; i < data.dbJoinChart.length; i++) {
-          if (data.dbJoinChart[i]["Category.type"] === "income") {
-            incomes.push({
-              amount: data.dbJoinChart[i].amount,
-              name: data.dbJoinChart[i]["Category.name"]
-            });
-          } else {
-            expenses.push({
-              amount: data.dbJoinChart[i].amount,
-              name: data.dbJoinChart[i]["Category.name"]
-            });
-          }
-        }
-        console.log(incomes);
-        console.log(expenses);
-      }
+      // if (data.dbJoinChart.length) {
+      //   var incomes = [];
+      //   var expenses = [];
+      //   for (i = 0; i < data.dbJoinChart.length; i++) {
+      //     if (data.dbJoinChart[i]["Category.type"] === "income") {
+      //       incomes.push({
+      //         amount: data.dbJoinChart[i].amount,
+      //         name: data.dbJoinChart[i]["Category.name"]
+      //       });
+      //     } else {
+      //       expenses.push({
+      //         amount: data.dbJoinChart[i].amount,
+      //         name: data.dbJoinChart[i]["Category.name"]
+      //       });
+      //     }
+      //     createArray(data);
+      //   }
+      // }
     })
     .catch(function(err) {
-      console.log("error");
       console.log(err);
     });
 
   $("#submit").on("click", function(event) {
     console.log("allocate clicked");
-    console.log("bshare  " + bshare);
-    console.log("pshare  " + pshare);
     event.preventDefault();
+    populated = false;
+    if (!populated) {
+      $("#bank").val(currentBalance);
+      $("#stock").val(portfolioVal);
+      resetDisplay(currentBalance, portfolioVal);
+    }
     var userData = {
       bankShare: bshare,
       portShare: pshare
@@ -72,11 +53,6 @@ $(document).ready(function() {
     })
       // eslint-disable-next-line no-unused-vars
       .then(function(data) {
-        console.log(data);
-
-        $("#income-reserves").val(0);
-
-        // window.location.replace("/income");
         // location.reload();
       })
       .catch(function(err) {
@@ -84,6 +60,75 @@ $(document).ready(function() {
         $("#alert").fadeIn(500);
       });
   });
+
+  // function createArray(data) {
+  //   var incomes = [];
+  //   var expenses = [];
+  //   for (i = 0; i < data.dbJoinChart.length; i++) {
+  //     if (data.dbJoinChart[i]["Category.type"] === "income") {
+  //       incomes.push({
+  //         amount: data.dbJoinChart[i].amount,
+  //         name: data.dbJoinChart[i]["Category.name"]
+  //       });
+  //     } else {
+  //       expenses.push({
+  //         amount: data.dbJoinChart[i].amount,
+  //         name: data.dbJoinChart[i]["Category.name"]
+  //       });
+  //     }
+  //   }
+  //   console.log(incomes);
+  //   console.log(expenses);
+  // }
+  function populate(data) {
+    console.log(data);
+    currentBalance = parseFloat(data.currentBalance);
+    portfolioVal = parseFloat(data.portfolioVal);
+    income = parseFloat(data.income);
+    expense = parseFloat(data.expense);
+    $(".member-name").text(data.firstName);
+    $("#bank").val(currentBalance);
+    $("#stock").val(portfolioVal);
+    $("#income").val(income);
+    $("#expenses").val(expense);
+    var incomeReserve = income - expense;
+    $("#income-reserves").val(incomeReserve);
+    populated = true;
+    if ($("#income-reserves").val() > 0) {
+      $("#bankshare").attr("disabled", false);
+      $("#bankshare").focus();
+      $("#bankshare").focusout(function() {
+        var bankperc = parseFloat($("#bankshare").val());
+        bshare = parseFloat(incomeReserve * 0.01 * bankperc).toFixed(2);
+        pshare = parseFloat(incomeReserve - bshare).toFixed(2);
+        currentBalance = parseFloat(currentBalance + bshare).toFixed(2);
+        portfolioVal = parseFloat(portfolioVal + pshare).toFixed(2);
+        $("#portshare").val(100 - bankperc);
+        $("#submit").attr("disabled", false);
+        if (isNaN(bankperc)) {
+          $("#bankshare").val("");
+          $("#portshare").val("");
+          $("#submit").attr("disabled", true);
+        }
+        isNaN(bshare) ? "" : $(".bshare").text(bshare);
+        isNaN(bshare) ? "" : $(".pshare").text(pshare);
+      });
+    }
+  }
+  function resetDisplay() {
+    console.log(currentBalance);
+    console.log(portfolioVal);
+    $("#income-reserves").val("");
+    $("#submit").attr("disabled", true);
+    $("#bankshare").val("");
+    $("#portshare").val("");
+    $(".bshare").text("");
+    $(".pshare").text("");
+    // $("#bank").val(currentBalance);
+    // $("#stock").val(portfolioVal);
+    $("#income").val(0);
+    $("#expenses").val(0);
+  }
   function tickerRender() {
     var queryUrl = "https://financialmodelingprep.com/api/v3/majors-indexes";
     $.ajax({
@@ -140,4 +185,4 @@ $(document).ready(function() {
   }
   tickerRender();
 });
-module.exports = { incomes: incomes, expenses: expenses };
+// module.exports = { incomes: incomes, expenses: expenses };

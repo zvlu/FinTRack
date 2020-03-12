@@ -1,9 +1,27 @@
 $(document).ready(function() {
   // Getting references to our form and input
-  var incomeForm = $("form.income");
-  var dateInput = $("#date-pick");
-  var incomeTypeInput = $("#income-type");
-  var incomeAmtInput = $("#income-amt");
+  let incomeForm = $("form.income");
+  let dateInput = $("#date-pick");
+  let incomeTypeInput = $("#income-type");
+  let incomeAmtInput = $("#income-amt");
+
+  $(function() {
+    let dtToday = new Date();
+
+    let month = dtToday.getMonth() + 1;
+    let day = dtToday.getDate();
+    let year = dtToday.getFullYear();
+
+    if (month < 10) {
+      month = "0" + month.toString();
+    }
+    if (day < 10) {
+      day = "0" + day.toString();
+    }
+
+    let maxDate = year + "-" + month + "-" + day;
+    $("#date-pick").attr("max", maxDate);
+  });
 
   incomeForm.on("submit", function(event) {
     event.preventDefault();

@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
 // Requiring our models and passport as we've configured it
-var db = require("../models");
-// var passport = require("../config/passport");
-var sequelize = require("sequelize");
+const db = require("../models");
+const sequelize = require("sequelize");
 
 module.exports = function(app) {
   
