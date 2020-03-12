@@ -13,9 +13,7 @@ module.exports = function(app) {
         res.json({});
       } else {
         const dbBank = await db.Bank.findOne({ where: { UserId: req.user.id }});
-        console.log(dbBank);
         const dbPortfolio = await db.Portfolio.findOne({ where: { UserId: req.user.id } });
-        console.log(dbPortfolio);
         const dbJoin = await db.InAndOut.findAll({
           attributes: [
             sequelize.fn("sum", sequelize.col("amount"))
@@ -25,6 +23,15 @@ module.exports = function(app) {
           include: [{ model: db.Category }],
           group: ["Category.type"]
         });
+        const dbJoinChart = await db.InAndOut.findAll({
+          where: { UserId: req.user.id,
+            $and :sequelize.where(sequelize.fn("month", sequelize.col("date")), 03)
+          },
+          required: true,
+          raw: true,
+          include: [{ model: db.Category }],
+        });
+               
         var income;
         var expense;
         switch (dbJoin.length) {
@@ -53,7 +60,8 @@ module.exports = function(app) {
           portfolioVal:
           dbPortfolio === null ? 0 : dbPortfolio.dataValues.portfolioVal,
           income: income,
-          expense: expense
+          expense: expense,
+          dbJoinChart:dbJoinChart
         });
       }
     }catch(err){
