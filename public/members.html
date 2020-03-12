@@ -30,7 +30,8 @@
             </div>
         </div>
     </div>    
-  </header><br>
+  </header><br><br>
+
 <div class="tcontainer">
   <div class="ticker-wrap">
       <div class="ticker-move">
@@ -53,7 +54,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="row">
                         <h2>Stock Portfolio</h2>
                     </div>
@@ -71,12 +72,16 @@
                     </div>
                     <div class="row">
                         <input id="income" class="finInput" type="text" readonly>
+                        <!-- <input type="date" id="" name="date">
+                        <input type="submit" value="Submit"> -->
                     </div>
                     <div class="row">
                         <h2>Expenses</h2>
                     </div>
                     <div class="row">
                         <input id="expenses" class="finInput" type="text" readonly>
+                        <!-- <input type="date" id="" name="date">
+                        <input type="submit" value="Submit"> -->
                     </div>
                     <div class="row">
                         <h2>Income Reserves</h2>
@@ -84,11 +89,29 @@
                     <div class="row">
                         <input id="income-reserves" class="finInput" type="text" readonly>
                     </div>
+                    <div class="row">
+                        <h2>Bank %</h2>
+                    </div>
+                    <div class="row">
+                        <input id="bankshare" class="finInput" type="text" disabled>
+                        <span class="bshare"></span>
+                    </div>
+                    <div class="row">
+                        <h2>Portfolio %</h2>
+                    </div>
+                    <div class="row">
+                        <input id="portshare" class="finInput" type="text" disabled>
+                        <span class="pshare"></span>
+                    </div><br>
+                    <div class="row">
+                        <button id="submit">Allocate</button>
+                    </div>
                 </div>
-
+                <div class="col-md-2"></div>
                 <div class="col-md-6">
                   <br><br><br><br>
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChartInc" width="700" height="500" ></canvas>
+                    <canvas id="myChartExp" width="700" height="500" ></canvas>
                 </div>
             </div>
         </div>
@@ -108,9 +131,9 @@
   integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
-  <script type="text/javascript" src="js/pieChart.js"></script>
-
+  <script type="text/javascript" src="./js/members.js"></script>
+  <script type="text/javascript" src="./js/pieChart.js"></script>
+  
 </body>
 
 </html>
