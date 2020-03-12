@@ -16,22 +16,37 @@
 
 <body>
   <header id="main-head">
-    <div class="navbar" id="myNavbar">
-        <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
-        <div class="dropdown">
-            <button class="dropbtn submit">Menu
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="./members.html">Home</a>
-                <a href="./income.html">Income</a>
-                <a href="./expenses.html">Expenses</a>
-                <a href="/logout">Logout</a>               
-            </div>
-        </div>
-    </div>    
-  </header>
 
+      <div class="navbar" id="myNavbar">
+          <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
+          <div class="dropdown">
+              <button class="dropbtn submit">Menu
+                  <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                  <a href="./members.html">Home</a>
+                  <a href="./income.html">Income</a>
+                  <a href="./expenses.html">Expenses</a>
+                  <a href="/logout">Logout</a>               
+              </div>
+          </div>
+      </div>    
+    </header><br>
+  <div class="tcontainer">
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+        <div class="ticker-item" id="stock-1"></div>
+        <div class="ticker-item" id="stock-2"></div>
+        <div class="ticker-item" id="stock-3"></div>
+        <div class="ticker-item" id="stock-4"></div>
+        <div class="ticker-item" id="stock-5"></div>
+        <div class="ticker-item" id="stock-6"></div>
+        <div class="ticker-item" id="stock-7"></div>
+        <div class="ticker-item" id="stock-8"></div>
+        <div class="ticker-item" id="stock-9"></div>
+        </div>
+    </div>
+  </div>
 
   <div id="main-container" class="container">
     <div class="container ph-container"></div>
@@ -48,8 +63,10 @@
             <option value="3">Supplementary</option>
           </select>
           <label>Amount</label>
+
           <input type="text" class="form-control" id="income-amt" placeholder="$">
           <button type="submit" class="btn btn-default">Save</button>
+
         </div>
       </form>
     </section>
