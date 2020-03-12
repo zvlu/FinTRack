@@ -1,16 +1,35 @@
 $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-
-  // $.get("/api/user_data").then(function(data) {
-  //   $(".member-name").text(data.firstName);
-  //   $(".stocks").text();
-  // });
   var bshare;
   var pshare;
 
   $.get("/api/user_data")
     .then(function(data) {
+      if (data) {
+        $(".member-name").text(data.firstName);
+        $("#bank").val(data.currentBalance);
+        $("#stock").val(data.portfolioVal);
+        $("#income").val(data.income);
+        $("#expenses").val(data.expense);
+        var incomeReserve = parseFloat(data.income) - parseFloat(data.expense);
+        $("#income-reserves").val(incomeReserve);
+        if ($("#income-reserves").val() > 0) {
+          $("#bankshare").attr("disabled", false);
+          $("#bankshare").focus();
+          $(".bshare").text("");
+          $("#bankshare").focusout(function() {
+            var bankperc = parseFloat($("#bankshare").val());
+            bshare = (incomeReserve * 0.01 * bankperc).toFixed(2);
+            pshare = (incomeReserve - bshare).toFixed(2);
+            console.log(bshare);
+            console.log(pshare);
+            $("#portshare").val(100 - bankperc);
+            $(".bshare").text(bshare);
+            $(".pshare").text(pshare);
+          });
+        }
+      }
       if (data.dbJoinChart.length) {
         console.log(data.dbJoinChart[0].amount);
         console.log(data.dbJoinChart[0]["Category.type"]);
@@ -29,32 +48,8 @@ $(document).ready(function() {
             });
           }
         }
-        // module.exports = { incomes: incomes, expenses: expenses };
-      }
-      // console.log(incomes);
-      // console.log(expenses);
-      $(".member-name").text(data.firstName);
-      $(".stocks").text();
-      $("#bank").val(data.currentBalance);
-      $("#stock").val(data.portfolioVal);
-      $("#income").val(data.income);
-      $("#expenses").val(data.expense);
-      var incomeReserve = parseFloat(data.income) - parseFloat(data.expense);
-      $("#income-reserves").val(incomeReserve);
-      if ($("#income-reserves").val() > 0) {
-        $("#bankshare").attr("disabled", false);
-        $("#bankshare").focus();
-        $(".bshare").text("");
-        $("#bankshare").focusout(function() {
-          var bankperc = parseFloat($("#bankshare").val());
-          bshare = (incomeReserve * 0.01 * bankperc).toFixed(2);
-          pshare = (incomeReserve - bshare).toFixed(2);
-          console.log(bshare);
-          console.log(pshare);
-          $("#portshare").val(100 - bankperc);
-          $(".bshare").text(bshare);
-          $(".pshare").text(pshare);
-        });
+        console.log(incomes);
+        console.log(expenses);
       }
     })
     .catch(function(err) {

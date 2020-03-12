@@ -13,9 +13,7 @@ module.exports = function(app) {
         res.json({});
       } else {
         const dbBank = await db.Bank.findOne({ where: { UserId: req.user.id }});
-        console.log(dbBank);
         const dbPortfolio = await db.Portfolio.findOne({ where: { UserId: req.user.id } });
-        console.log(dbPortfolio);
         const dbJoin = await db.InAndOut.findAll({
           attributes: [
             sequelize.fn("sum", sequelize.col("amount"))

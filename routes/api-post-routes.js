@@ -57,8 +57,6 @@ module.exports = function(app) {
 
   app.post("/api/user_data", async function(req, res) {
     try {
-      console.log("user id " + req.user.id);
-      console.log("body " + req.body.bshare);
       let dbBankOne = await db.Bank.findOne({ where: { userId: req.user.id } });
       if (dbBankOne) {
         await db.Bank.update(
