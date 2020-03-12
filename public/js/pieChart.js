@@ -1,4 +1,10 @@
+/* eslint-disable no-unused-vars */
+//  incomes = members.incomes;
+
+// incomes.map(item => console.log("item from incomes array " + item));
+
 var ctx = document.getElementById("myChart").getContext("2d");
+// incomes.map(item => console.log("item from incomes array " + item));
 var myDoughnutChart = new Chart(ctx, {
   type: "doughnut",
   data: {

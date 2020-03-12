@@ -11,7 +11,28 @@ $(document).ready(function() {
 
   $.get("/api/user_data")
     .then(function(data) {
-      console.log(data);
+      if (data.dbJoinChart.length) {
+        console.log(data.dbJoinChart[0].amount);
+        console.log(data.dbJoinChart[0]["Category.type"]);
+        var incomes = [];
+        var expenses = [];
+        for (i = 0; i < data.dbJoinChart.length; i++) {
+          if (data.dbJoinChart[i]["Category.type"] === "income") {
+            incomes.push({
+              amount: data.dbJoinChart[i].amount,
+              name: data.dbJoinChart[i]["Category.name"]
+            });
+          } else {
+            expenses.push({
+              amount: data.dbJoinChart[i].amount,
+              name: data.dbJoinChart[i]["Category.name"]
+            });
+          }
+        }
+        // module.exports = { incomes: incomes, expenses: expenses };
+      }
+      // console.log(incomes);
+      // console.log(expenses);
       $(".member-name").text(data.firstName);
       $(".stocks").text();
       $("#bank").val(data.currentBalance);
@@ -28,6 +49,8 @@ $(document).ready(function() {
           var bankperc = parseFloat($("#bankshare").val());
           bshare = (incomeReserve * 0.01 * bankperc).toFixed(2);
           pshare = (incomeReserve - bshare).toFixed(2);
+          console.log(bshare);
+          console.log(pshare);
           $("#portshare").val(100 - bankperc);
           $(".bshare").text(bshare);
           $(".pshare").text(pshare);
@@ -122,3 +145,4 @@ $(document).ready(function() {
   }
   tickerRender();
 });
+module.exports = { incomes: incomes, expenses: expenses };
