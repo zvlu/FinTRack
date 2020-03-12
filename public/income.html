@@ -16,6 +16,7 @@
 
 <body>
   <header id="main-head">
+
       <div class="navbar" id="myNavbar">
           <a href="./members.html" id="fixed">Welcome <span class="member-name"></span></a>
           <div class="dropdown">
@@ -47,50 +48,46 @@
     </div>
   </div>
 
-
-
-    <div id="main-container" class="container">
-
-        <section class="main-section">
-
-  <form class="income">
+  <div id="main-container" class="container">
+    <div class="container ph-container"></div>
+    <section class="main-section">
+      <form class="income">
         <div class="form-group">
           <label>Date</label>
+<<<<<<< HEAD
           <input type="text" class="form-control finInput" id="date-pick" placeholder="MM-DD-YYYY">
         <!-- </div> -->
         <!-- <div class="form-group"> -->
+=======
+          <input type="date" class="form-control" id="date-pick" placeholder="YYYY-MM-DD">
+>>>>>>> 83a4ffb940e95c88bcff36bd4ae9195301381cf5
           <label>Type of Income</label>
-          <!-- <input type="text" class="form-control" id="lName-input" placeholder="Last Name"> -->
-          <select class="custom-select finInput" id="income-type">
+          <select class="custom-select" id="income-type">
             <option selected>Choose...</option>
             <option value="1">Primary</option>
             <option value="2">Secondary</option>
             <option value="3">Supplementary</option>
           </select>
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
           <label>Amount</label>
-          <input type="text" class="form-control finInput" id="income-amt" placeholder="$">
-        <!-- </div> -->
-        <button type="submit" class="btn btn-default">Save</button>
+
+          <input type="text" class="form-control" id="income-amt" placeholder="$">
+          <button type="submit" class="btn btn-default">Save</button>
+
         </div>
       </form>
-
-            
-        </section>
-    </div>
-
-    <div class="footer">
-        <div class="container"> 
-            &copy; 2020 Gouda Bank, N.A. All rights reserved
-        </div>
-    </div>
+    </section>
+    
+  </div>
   
- 
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="js/income.js"></script>
-<!-- >>>>>>> d2d6ade257e7f9b081cef842432dfa681f1efeee -->
 
+  <div class="footer">
+    <div class="container"> 
+      &copy; 2020 Gouda Bank, N.A. All rights reserved
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/income.js"></script>
+  <script type="text/javascript" src="js/members.js"></script>
 </body>
-
 </html>
