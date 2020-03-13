@@ -34,7 +34,6 @@ module.exports = function(app) {
   });
 
   app.post("/api/income", async function(req, res) {
-    console.log("hello");
     createIncomeOrExpense(req, res);
   });
 
@@ -46,9 +45,8 @@ module.exports = function(app) {
       });
 
       let dbCatExist = await db.InAndOut.findOne({
-        where: { CategoryId: dbCategory.dataValues.id }
+        where: { CategoryId: dbCategory.dataValues.id, UserId: req.user.id }
       });
-      console.log(dbCatExist.dataValues.CategoryId);
       if (dbCatExist) {
         await db.InAndOut.update(
           {

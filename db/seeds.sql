@@ -8,7 +8,7 @@ insert into bank (currentBalance,userId) values (8800, 3);
 select * from bank;
 
 insert into categories (type, name) values ("income", "Primary"), ("income", "Secondary"), ("income", "Supplementary"), ("expense", "Mortgage"), ("expense", "Rent"),
-											("expense", "Car"), ("expense", "Gas"), ("expense", "Electricity"), ("expense", "Grocery"), ("expense", "Grocery"), 
+											("expense", "Car"), ("expense", "Gas"), ("expense", "Electricity"), ("expense", "Grocery"), 
                                             ("expense", "Entertainment"), ("expense", "Misc");
                                             
 select * from categories;
@@ -26,3 +26,4 @@ select * from inandouts join categories on inandouts.CategoryId = categories.id 
 select sum(amount), categories.type  from inandouts join categories on inandouts.CategoryId = categories.id where userId= 12 GROUP BY categories.type;
 select * from inandouts join categories on inandouts.CategoryId = categories.id where UserId = 1 and month(inandouts.date) = 3;
 
+delete from inandouts where CategoryId = 1;

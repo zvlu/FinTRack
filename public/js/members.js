@@ -188,8 +188,4 @@ $(document).ready(function() {
   tickerRender();
 });
 
-<<<<<<< HEAD
 // console.log(chartData(data));
-=======
-console.log(chartData(data));
->>>>>>> b7d81f3b2c611d07c633d3ffb250bd270adc8bc6
