@@ -36,6 +36,10 @@ $(document).ready(function() {
         .trim(),
       amount: expenseAmtInput.val().trim()
     };
+    var expenseCategory = $("#expense-type option:selected").text();
+    $(".type").text(expenseCategory);
+    $(".amount").text(expenseAmtInput.val());
+    $(".date").text(dateInput.val());
     // eslint-disable-next-line prettier/prettier
     saveExpenseAmt( userData.date, userData.category, userData.amount );
     dateInput.val("");
@@ -52,7 +56,7 @@ $(document).ready(function() {
       // eslint-disable-next-line no-unused-vars
       .then(function(data) {
         console.log(data);
-        location.reload();
+        // location.reload();
       })
       .catch(handleLoginErr);
   }
