@@ -1,8 +1,11 @@
 {
-  "name": "project2",
+  "name": "FinTRack",
   "version": "1.0.0",
-  "description": "",
+  "description": "A personal finance tracker App",
   "main": "server.js",
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "test": "npm run lint",
     "start": "node server.js",

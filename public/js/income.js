@@ -44,13 +44,6 @@ $(document).ready(function() {
 
     // eslint-disable-next-line prettier/prettier
     saveIncomeAmt( userData.date, userData.category, userData.amount );
-    // var listHeader = $("#incomelist");
-    // liTag = $("<button>").html("<b>" + searchCity + "</b>");
-    //     liTag.attr("data-city",searchCity);
-    //     liTag.addClass("list-group-item list-group-item-action list-group-item-primary citybutton");
-    //     listDiv.append(liTag);
-    //     $(".addcity").val("");
-
     dateInput.val("");
     incomeTypeInput.val("");
     incomeAmtInput.val("");
