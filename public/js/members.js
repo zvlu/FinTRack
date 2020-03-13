@@ -188,5 +188,4 @@ $(document).ready(function() {
   tickerRender();
 });
 
-console.log(chartData(data));
-
+// console.log(chartData(data));

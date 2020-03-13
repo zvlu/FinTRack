@@ -44,14 +44,33 @@ module.exports = function(app) {
       let dbCategory = await db.Category.findOne({
         where: { name: req.body.category }
       });
-      await db.InAndOut.create({
-        date: req.body.date,
-        amount: req.body.amount,
-        UserId: req.user.id,
-        CategoryId: dbCategory.dataValues.id
+
+      let dbCatExist = await db.InAndOut.findOne({
+        where: { CategoryId: dbCategory.dataValues.id }
       });
-      console.log("success");
-      return res.sendStatus(200);
+      console.log(dbCatExist.dataValues.CategoryId);
+      if (dbCatExist) {
+        await db.InAndOut.update(
+          {
+            date: req.body.date,
+            amount:
+              parseFloat(dbCatExist.dataValues.amount) +
+              parseFloat(req.body.amount)
+          },
+          {
+            where: { CategoryId: dbCatExist.dataValues.CategoryId }
+          }
+        );
+      } else {
+        await db.InAndOut.create({
+          date: req.body.date,
+          amount: req.body.amount,
+          UserId: req.user.id,
+          CategoryId: dbCategory.dataValues.id
+        });
+        console.log("success");
+        return res.sendStatus(200);
+      }
     } catch (err) {
       console.log(err);
       return res.json(err);
