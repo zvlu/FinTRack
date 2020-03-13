@@ -36,6 +36,12 @@ $(document).ready(function() {
         .trim(),
       amount: incomeAmtInput.val().trim()
     };
+    var incomeCategory = $("#income-type option:selected").text();
+
+    $(".type").text(incomeCategory);
+    $(".amount").text(incomeAmtInput.val());
+    $(".date").text(dateInput.val());
+
     // eslint-disable-next-line prettier/prettier
     saveIncomeAmt( userData.date, userData.category, userData.amount );
     // var listHeader = $("#incomelist");
@@ -69,4 +75,10 @@ $(document).ready(function() {
     $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
   }
+  // $("#submit").on("click", function(event) {
+  //   event.preventDefault();
+
+  //   $(".primary").text(incomeAmtInput.val());
+  //   console.log(incomeAmtInput.val());
+  // });
 });
