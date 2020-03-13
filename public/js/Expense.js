@@ -1,9 +1,27 @@
 $(document).ready(function() {
   // Getting references to our form and input
-  var expenseForm = $("form.Expense");
-  var dateInput = $("#date-pick");
-  var expenseTypeInput = $("#expense-type");
-  var expenseAmtInput = $("#expense-amt");
+  let expenseForm = $("form.Expense");
+  let dateInput = $("#date-pick");
+  let expenseTypeInput = $("#expense-type");
+  let expenseAmtInput = $("#expense-amt");
+
+  $(function() {
+    let dtToday = new Date();
+
+    let month = dtToday.getMonth() + 1;
+    let day = dtToday.getDate();
+    let year = dtToday.getFullYear();
+
+    if (month < 10) {
+      month = "0" + month.toString();
+    }
+    if (day < 10) {
+      day = "0" + day.toString();
+    }
+
+    let maxDate = year + "-" + month + "-" + day;
+    $("#date-pick").attr("max", maxDate);
+  });
 
   expenseForm.on("submit", function(event) {
     event.preventDefault();
