@@ -75,10 +75,4 @@ $(document).ready(function() {
     $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
   }
-  // $("#submit").on("click", function(event) {
-  //   event.preventDefault();
-
-  //   $(".primary").text(incomeAmtInput.val());
-  //   console.log(incomeAmtInput.val());
-  // });
 });

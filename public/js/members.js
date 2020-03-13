@@ -13,24 +13,6 @@ $(document).ready(function() {
       if (data) {
         populate(data);
       }
-      // if (data.dbJoinChart.length) {
-      //   var incomes = [];
-      //   var expenses = [];
-      //   for (i = 0; i < data.dbJoinChart.length; i++) {
-      //     if (data.dbJoinChart[i]["Category.type"] === "income") {
-      //       incomes.push({
-      //         amount: data.dbJoinChart[i].amount,
-      //         name: data.dbJoinChart[i]["Category.name"]
-      //       });
-      //     } else {
-      //       expenses.push({
-      //         amount: data.dbJoinChart[i].amount,
-      //         name: data.dbJoinChart[i]["Category.name"]
-      //       });
-      //     }
-      //     createArray(data);
-      //   }
-      // }
     })
     .catch(function(err) {
       console.log(err);
@@ -63,31 +45,13 @@ $(document).ready(function() {
       });
   });
 
-  // function createArray(data) {
-  //   var incomes = [];
-  //   var expenses = [];
-  //   for (i = 0; i < data.dbJoinChart.length; i++) {
-  //     if (data.dbJoinChart[i]["Category.type"] === "income") {
-  //       incomes.push({
-  //         amount: data.dbJoinChart[i].amount,
-  //         name: data.dbJoinChart[i]["Category.name"]
-  //       });
-  //     } else {
-  //       expenses.push({
-  //         amount: data.dbJoinChart[i].amount,
-  //         name: data.dbJoinChart[i]["Category.name"]
-  //       });
-  //     }
-  //   }
-  //   console.log(incomes);
-  //   console.log(expenses);
-  // }
   function populate(data) {
     console.log(data);
     currentBalance = parseFloat(data.currentBalance);
     portfolioVal = parseFloat(data.portfolioVal);
     income = parseFloat(data.income);
     expense = parseFloat(data.expense);
+    $("p").hide();
     $(".member-name").text(data.firstName);
     $("#bank").val(currentBalance);
     $("#stock").val(portfolioVal);
@@ -188,4 +152,4 @@ $(document).ready(function() {
   tickerRender();
 });
 
-console.log(chartData(data));
+// console.log(chartData(data));
