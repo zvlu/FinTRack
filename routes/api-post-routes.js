@@ -34,6 +34,7 @@ module.exports = function(app) {
   });
 
   app.post("/api/income", async function(req, res) {
+    console.log("hello");
     createIncomeOrExpense(req, res);
   });
 
@@ -49,8 +50,10 @@ module.exports = function(app) {
         UserId: req.user.id,
         CategoryId: dbCategory.dataValues.id
       });
+      console.log("success");
       return res.sendStatus(200);
     } catch (err) {
+      console.log(err);
       return res.json(err);
     }
   }
