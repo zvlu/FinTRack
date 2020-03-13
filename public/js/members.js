@@ -1,11 +1,13 @@
 $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
+
   let bshare = 0;
   let pshare = 0;
   let populated = false;
   let currentBalance = 0;
   let portfolioVal = 0;
+
   $.get("/api/user_data")
     .then(function(data) {
       if (data) {
@@ -185,4 +187,6 @@ $(document).ready(function() {
   }
   tickerRender();
 });
-// module.exports = { incomes: incomes, expenses: expenses };
+
+console.log(chartData(data));
+

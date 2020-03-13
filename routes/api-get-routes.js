@@ -67,4 +67,28 @@ module.exports = function(app) {
       return res.json(err);
     }
   });
+  app.get("/api/chart_data", async function(req, res) {
+    try{
+      if (!req.user) {
+      // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        const dbJoinChart = await db.InAndOut.findAll({
+          where: { UserId: req.user.id,
+            $and :sequelize.where(sequelize.fn("month", sequelize.col("date")), 03)
+          },
+          required: true,
+          raw: true,
+          include: [{ model: db.Category }],
+        });
+               
+        res.json({
+          dbJoinChart:dbJoinChart
+        });
+      }
+    }catch(err){
+      return res.json(err);
+    }
+  });
 };
+  
