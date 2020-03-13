@@ -1,4 +1,4 @@
-// Creating our Income model
+// Creating our Category model
 module.exports = function(sequelize, DataTypes) {
   var Category = sequelize.define(
     "Category",

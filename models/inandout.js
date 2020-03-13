@@ -2,7 +2,6 @@ module.exports = function(sequelize, DataTypes) {
   var InAndOut = sequelize.define(
     "InAndOut",
     {
-      // The email cannot be null, and must be a proper email before creation
       date: {
         type: DataTypes.DATEONLY,
         allowNull: true,
@@ -10,7 +9,6 @@ module.exports = function(sequelize, DataTypes) {
           len: [1, 10]
         }
       },
-      // The password cannot be null
       amount: {
         type: DataTypes.DECIMAL,
         allowNull: true,
@@ -24,8 +22,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
   InAndOut.associate = function(models) {
-    // We're saying that a Post should belong to an Author
-    // A Post can't be created without an Author due to the foreign key constraint
     InAndOut.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
@@ -38,6 +34,5 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   return InAndOut;
 };

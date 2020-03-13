@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>weather</title>
+<style>
+    body{
+        background-image: url(stylesheets/stockphoto.jpeg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        height: 100vh;
+    }
+</style>
+</head>
+
+<body>
+    <div class="row" style="margin: 10px;">
+        <div class="menu">
+            <div class="input-group mb-3">
+                <form id="movie-form" style="display: inherit;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Search SDtock</span>
+                    </div>
+                    <input type="text" style="border-radius: 0;" class="form-control" placeholder="Company Name"
+                        id="company-input"><br>
+
+                    <!-- Button triggers new movie to be added -->
+                    <input id="add-city" style="border-radius: 0 5px 5px 0" type="submit"
+                        class="btn btn-primary glyphicon" value="Go!">
+                </form>
+            </div>
+            <div>
+                <ul class="list-group">
+                </ul>
+
+            </div>
+        </div>
+        <div class="col-md disp">
+            <div class="info">
+                <div class="myLoc">
+                    <p id="status"></p>
+                </div>
+                <div class="city">City Weather Info</div>
+                <div class="wind"></div>
+                <div class="humidity"></div>
+                <div class="temp"></div>
+                <div class="UVINDEX"></div>
+                <div class="weather"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+        var company;
+        $("#add-city").on("click", function (event) {
+            event.preventDefault();
+            company = $("#company-input").val().trim();
+            $("#company-input").val('');
+           // console.log(company);
+            findStock(company);
+        });
+
+
+        
+ function findStock(company){
+        var queryURL1 =
+            "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords="+company+"&apikey=3MA1I2DFH4BCUUCG";
+        $.ajax({
+            url: queryURL1,
+            method: "GET"
+        }).then(function (response) {
+           // console.log(response);
+            let data = response.bestMatches[0]
+           // console.log((Object.values(data)[0]));
+           var symbol=(Object.values(data)[0]);
+             console.log(symbol);
+             highLowquote(symbol);
+             compen(symbol);
+             revenueEst(symbol);
+             rec(symbol);
+        });
+    }
+
+function highLowquote(symbol){
+//var queryURL="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=3MA1I2DFH4BCUUCG";
+        // This is giving "Open price of the day",High price,low price,current price,previous close price,Timestamp of current daily bar for "apple"
+        var queryURL="https://finnhub.io/api/v1/quote?symbol="+symbol+"&token=bpkhbgnrh5rcgrlra9h0" ;
+       $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+        });
+    }
+
+     function compen(symbol){
+    //CEO compensation
+    var queryURL="https://finnhub.io/api/v1/stock/ceo-compensation?symbol="+symbol+"&token=bpkhbgnrh5rcgrlra9h0";
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+        });
+    }
+
+    function revenueEst(symbol){
+   //company revenue estimate
+var queryurl="https://finnhub.io/api/v1/stock/revenue-estimate?symbol="+symbol+"&freq=annual&token=bpkhbgnrh5rcgrlra9h0";
+$.ajax({
+            url: queryurl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+        });
+    } //This is giving symbol: "BMW.DE",targetHigh,targetLow,targetMean,targetMedian
+        // var queryURL= "https://finnhub.io/api/v1/stock/price-target?symbol=BMW.DE&token=bpkhbgnrh5rcgrlra9h0";
+function rec(symbol){
+var queryURL="https://finnhub.io/api/v1/stock/recommendation?symbol="+symbol+"&token=bpkhbgnrh5rcgrlra9h0";
+$.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+        });
+    } 
+
+       
+       // 5-min interval data 
+//  var queryurl= https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=demo 
+//https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=3MA1I2DFH4BCUUCG   
+        
+    </script>
+
+</body>
+
+</html>

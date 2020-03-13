@@ -59,7 +59,7 @@
                         <h2>Stock Portfolio</h2>
                     </div>
                     <div class="row">
-                        <input class="finInput" id="stock" type="text" readonly>
+                        <input class="finInput" id="stock" type="text" readonly><button id="stocks"><a href="./stocks.html" class="dropbtn submit">Stocks</a></button>
                     </div>
                     <div class="row">
                         <h2>Bank Account</h2>
@@ -72,16 +72,12 @@
                     </div>
                     <div class="row">
                         <input id="income" class="finInput" type="text" readonly>
-                        <!-- <input type="date" id="" name="date">
-                        <input type="submit" value="Submit"> -->
                     </div>
                     <div class="row">
                         <h2>Expenses</h2>
                     </div>
                     <div class="row">
                         <input id="expenses" class="finInput" type="text" readonly>
-                        <!-- <input type="date" id="" name="date">
-                        <input type="submit" value="Submit"> -->
                     </div>
                     <div class="row">
                         <h2>Income Reserves</h2>
@@ -104,12 +100,14 @@
                         <span class="pshare"></span>
                     </div><br>
                     <div class="row">
-                        <button id="submit">Allocate</button>
+                        <button id="submit" disabled>Allocate</button>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-6">
-                  <br><br><br><br>
+
+                  <br><br>
+                  
                     <canvas id="myChartInc" width="700" height="500" ></canvas>
                     <canvas id="myChartExp" width="700" height="500" ></canvas>
                 </div>
