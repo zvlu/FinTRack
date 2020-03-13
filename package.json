@@ -1,5 +1,5 @@
 {
-  "name": "FinTRack",
+  "name": "fintrack",
   "version": "1.0.0",
   "description": "A personal finance tracker App",
   "main": "server.js",
