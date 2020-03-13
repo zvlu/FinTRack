@@ -189,4 +189,3 @@ $(document).ready(function() {
 });
 
 console.log(chartData(data));
-
