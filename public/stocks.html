@@ -126,7 +126,7 @@
                 method: "GET"
             }).then(function (response) {
                 console.log('Global Quote==>'+response["Global Quote"]["02. open"]);
-                $(".currPrice").append("<b>Current Price: </b>"+response["Global Quote"]["05. price"])
+                $(".curPrice").append("<b>Current Price: </b>"+response["Global Quote"]["05. price"])
                 $(".open").append("<b>Open: </b>"+ response["Global Quote"]["02. open"]);
                 $(".privClose").append("<b>Previous Close: </b>" + response["Global Quote"]["08. previous close"]);
                 $(".high").append("<b>High: </b>" + response["Global Quote"]["03. high"]);
