@@ -11,6 +11,7 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
         res.json({});
       } else {
+        // console.log(req);
         const dbBank = await db.Bank.findOne({ where: { UserId: req.user.id }});
         const dbPortfolio = await db.Portfolio.findOne({ where: { UserId: req.user.id } });
         const dbJoin = await db.InAndOut.findAll({
@@ -22,15 +23,6 @@ module.exports = function(app) {
           include: [{ model: db.Category }],
           group: ["Category.type"]
         });
-        const dbJoinChart = await db.InAndOut.findAll({
-          where: { UserId: req.user.id,
-            $and :sequelize.where(sequelize.fn("month", sequelize.col("date")), 03)
-          },
-          required: true,
-          raw: true,
-          include: [{ model: db.Category }],
-        });
-               
         var income;
         var expense;
         switch (dbJoin.length) {
@@ -60,14 +52,15 @@ module.exports = function(app) {
           dbPortfolio === null ? 0 : dbPortfolio.dataValues.portfolioVal,
           income: income,
           expense: expense,
-          dbJoinChart:dbJoinChart
+          // dbJoinChart:dbJoinChart
         });
       }
     }catch(err){
       return res.json(err);
     }
-  });
-  app.get("/api/chart_data", async function(req, res) {
+  }); 
+  app.get("/api/chart_data/:month", async function(req, res) {
+    console.log(req.params.month);
     try{
       if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -75,7 +68,7 @@ module.exports = function(app) {
       } else {
         const dbJoinChart = await db.InAndOut.findAll({
           where: { UserId: req.user.id,
-            $and :sequelize.where(sequelize.fn("month", sequelize.col("date")), 03)
+            $and :sequelize.where(sequelize.fn("month", sequelize.col("date")), req.params.month)
           },
           required: true,
           raw: true,
