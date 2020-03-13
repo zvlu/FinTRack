@@ -6,26 +6,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>weather</title>
-<style>
-    body{
-        background-image: url(stylesheets/stockphoto.jpeg);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        height: 100vh;
-    }
-</style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <style>
+        body {
+            background-image: url(stylesheets/stockphoto.jpeg);
+            opacity: 90%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .stock {
+            float: right;
+            width: 600px !important;
+            height: 400px !important;
+            padding: 5px;
+            border-radius: 4px;
+            opacity: 85%;
+            margin-right: 15px;
+        }
+        .disp {
+            border-radius: 4px;
+            opacity: 85%;
+            margin-top: 6px;
+            min-width: 250px;
+            margin-left: 15px;
+        }
+
+    </style>
 </head>
 
 <body>
+    <div class='stock'><canvas id="myChart" width="400" height="350"></canvas></div>
     <div class="row" style="margin: 10px;">
         <div class="menu">
             <div class="input-group mb-3">
-                <form id="movie-form" style="display: inherit;">
+                <form id="movie-form" style="display: inherit; margin-top: 6px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Search SDtock</span>
+                        <span class="input-group-text" id="basic-addon1">Search Stock</span>
                     </div>
-                    <input type="text" style="border-radius: 0;" class="form-control" placeholder="Company Name"
+                    <input type="text" style="border-radius: 0;" class="form-control" placeholder="Name or symbol"
                         id="company-input"><br>
 
                     <!-- Button triggers new movie to be added -->
@@ -42,14 +63,14 @@
         <div class="col-md disp">
             <div class="info">
                 <div class="myLoc">
-                    <p id="status"></p>
+                    <p class="curPrice"></p>
                 </div>
-                <div class="city">City Weather Info</div>
-                <div class="wind"></div>
-                <div class="humidity"></div>
-                <div class="temp"></div>
-                <div class="UVINDEX"></div>
-                <div class="weather"></div>
+                <div class="open"></div>
+                <div class="privClose"></div>
+                <div class="low"></div>
+                <div class="high"></div>
+                <div class="volume"></div>
+                
             </div>
         </div>
     </div>
@@ -63,84 +84,155 @@
 
     <script type="text/javascript">
         var company;
+        let globalQuotes=[];
         $("#add-city").on("click", function (event) {
             event.preventDefault();
             company = $("#company-input").val().trim();
             $("#company-input").val('');
-           // console.log(company);
+            // console.log(company);
             findStock(company);
         });
 
+        async function findStock(company) {
+            var queryURL1 =
+                "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + company +
+                "&apikey=3MA1I2DFH4BCUUCG";
+            $.ajax({
+                url: queryURL1,
+                method: "GET"
+            }).then(function (response) {
+                // console.log(response);
+                let data = response.bestMatches[0]
+                // console.log((Object.values(data)[0]));
+                var symbol = (Object.values(data)[0]);
+                console.log(symbol);
+                highLowquote(symbol);
+                compen(symbol);
+                revenueEst(symbol);
+                rec(symbol);
+                drawChart(symbol)
+                $("#myChart").css({
+                    "background-color": "#ffffff", "border-radius": "4px"
+                });
+            });
+        }
 
-        
- function findStock(company){
-        var queryURL1 =
-            "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords="+company+"&apikey=3MA1I2DFH4BCUUCG";
-        $.ajax({
-            url: queryURL1,
-            method: "GET"
-        }).then(function (response) {
-           // console.log(response);
-            let data = response.bestMatches[0]
-           // console.log((Object.values(data)[0]));
-           var symbol=(Object.values(data)[0]);
-             console.log(symbol);
-             highLowquote(symbol);
-             compen(symbol);
-             revenueEst(symbol);
-             rec(symbol);
-        });
-    }
+        async function highLowquote(symbol) {
+            var queryURL="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=3MA1I2DFH4BCUUCG";
+            // This is giving "Open price of the day",High price,low price,current price,previous close price,Timestamp of current daily bar for "apple"
+           // var queryURL = "https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=bpkhbgnrh5rcgrlra9h0";
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log('Global Quote==>'+response["Global Quote"]["02. open"]);
+                $(".currPrice").append("<b>Current Price: </b>"+response["Global Quote"]["05. price"])
+                $(".open").append("<b>Open: </b>"+ response["Global Quote"]["02. open"]);
+                $(".privClose").append("<b>Previous Close: </b>" + response["Global Quote"]["08. previous close"]);
+                $(".high").append("<b>High: </b>" + response["Global Quote"]["03. high"]);
+                $(".low").append("<b>Low: </b>" + response["Global Quote"]["04. low"]);
+                $(".volume").append("<b>Volume: </b>" + response["Global Quote"]["06. volume"]);
+                $(".disp").css({"background-color": "#ffffff", "border-radius": "4px", "border-radius": "4px",
+                                "min-width": "350px !important;", "flex-grow": "unset"})
 
-function highLowquote(symbol){
-//var queryURL="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=3MA1I2DFH4BCUUCG";
-        // This is giving "Open price of the day",High price,low price,current price,previous close price,Timestamp of current daily bar for "apple"
-        var queryURL="https://finnhub.io/api/v1/quote?symbol="+symbol+"&token=bpkhbgnrh5rcgrlra9h0" ;
-       $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-        });
-    }
+            });
+        }
 
-     function compen(symbol){
-    //CEO compensation
-    var queryURL="https://finnhub.io/api/v1/stock/ceo-compensation?symbol="+symbol+"&token=bpkhbgnrh5rcgrlra9h0";
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-        });
-    }
+        function compen(symbol) {
+            //CEO compensation
+            var queryURL = "https://finnhub.io/api/v1/stock/ceo-compensation?symbol=" + symbol +
+                "&token=bpkhbgnrh5rcgrlra9h0";
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
 
-    function revenueEst(symbol){
-   //company revenue estimate
-var queryurl="https://finnhub.io/api/v1/stock/revenue-estimate?symbol="+symbol+"&freq=annual&token=bpkhbgnrh5rcgrlra9h0";
-$.ajax({
-            url: queryurl,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-        });
-    } //This is giving symbol: "BMW.DE",targetHigh,targetLow,targetMean,targetMedian
+        function revenueEst(symbol) {
+            //company revenue estimate
+            var queryurl = "https://finnhub.io/api/v1/stock/revenue-estimate?symbol=" + symbol +
+                "&freq=annual&token=bpkhbgnrh5rcgrlra9h0";
+            $.ajax({
+                url: queryurl,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+            });
+        } //This is giving symbol: "BMW.DE",targetHigh,targetLow,targetMean,targetMedian
         // var queryURL= "https://finnhub.io/api/v1/stock/price-target?symbol=BMW.DE&token=bpkhbgnrh5rcgrlra9h0";
-function rec(symbol){
-var queryURL="https://finnhub.io/api/v1/stock/recommendation?symbol="+symbol+"&token=bpkhbgnrh5rcgrlra9h0";
-$.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-        });
-    } 
+        function rec(symbol) {
+            var queryURL = "https://finnhub.io/api/v1/stock/recommendation?symbol=" + symbol +
+                "&token=bpkhbgnrh5rcgrlra9h0";
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
 
-       
-       // 5-min interval data 
-//  var queryurl= https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=demo 
-//https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=3MA1I2DFH4BCUUCG   
+        let keys = [];
+        let quotes = [];
+        let stockName;
+        let colors=['rgba(224, 20, 64, 1)', 'rgba(20, 224, 75, 1)']
+        let bgColor=['rgba(255, 99, 132, 0.2)', 'rgba(139, 234, 164, 1']
         
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        async function drawChart(stockSym) {
+            await loadData(stockSym);
+            let colorIndex=quotes[quotes.length -1] - quotes[0] > 0 ? 1 : 0;
+            console.log(colorIndex + colors[colorIndex])
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: keys,
+                    datasets: [{
+                        label: 'Quotes for ' + stockSym,
+                        data: quotes,
+                        fill: true,
+                        backgroundColor: bgColor[colorIndex],
+                        borderColor: colors[colorIndex],
+                        borderWidth: 1
+                    }]
+                },
+
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+
+                }
+            });
+        }
+
+        async function loadData(stockSym) {
+
+            const response = await fetch(
+                `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSym}&interval=60min&outputsize=full&apikey=3MA1I2DFH4BCUUCG`
+            );
+            const data = await response.json()
+            let values = (Object.values(Object.values(data)[1]));
+            values = values.reverse()
+            keys = Object.keys(Object.values(data)[1]);
+            keys = keys.reverse()
+            //console.log(keys)
+
+            values.forEach(element => {
+                //console.log(element);
+                //console.log(Object.values(element)[3])
+                quotes.push(Object.values(element)[3]);
+            });
+           // console.log(quotes)
+        }
+    </script>
+
     </script>
 
 </body>
