@@ -1,5 +1,3 @@
-create database expense_tracker;
-use expense_tracker;
 
 insert into users (firstName,lastName,email,password) VALUES ("Andrew","LN","and@gmail.com","andr");
 select * from users;
@@ -27,3 +25,4 @@ select sum(amount), categories.type  from inandouts join categories on inandouts
 select * from inandouts join categories on inandouts.CategoryId = categories.id where UserId = 1 and month(inandouts.date) = 3;
 
 delete from inandouts where CategoryId = 1;
+
