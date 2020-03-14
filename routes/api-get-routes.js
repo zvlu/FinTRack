@@ -25,25 +25,34 @@ module.exports = function(app) {
         });
         var income;
         var expense;
+        console.log(dbJoin);
+        console.log(dbJoin.length);
+        
         switch (dbJoin.length) {
         case 0:
           income = 0;
           expense = 0;
           break;
         case 1:
+          console.log("in case 1 if " + dbJoin[0]["Category.type"]);
           if(dbJoin[0]["Category.type"] === "income"){
             income = dbJoin[0]["sum(`amount`)"];
             expense = 0;
             break;
           }
+          console.log("incase 1 else " + dbJoin[0]["Category.type"]);
           expense = dbJoin[0]["sum(`amount`)"];
           income = 0;
           break;
         case 2:
+          console.log("in case 2" + dbJoin[0]["Category.type"]);
+          console.log("in case 2 " + dbJoin[0]["Category.type"]);
           income = dbJoin[0]["sum(`amount`)"];
           expense = dbJoin[1]["sum(`amount`)"];
           break;
         }
+        console.log(" income " + income);
+        console.log(" expense " + expense);
         res.json({
           firstName: req.user.firstName,
           currentBalance:
