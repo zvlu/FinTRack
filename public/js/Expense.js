@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // Getting references to our form and input
   let expenseForm = $("form.Expense");
-  let dateInput = $("#date-pick");
+  let dateInput = $("#date-pick-exp");
   let expenseTypeInput = $("#expense-type");
   let expenseAmtInput = $("#expense-amt");
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
 
     let maxDate = year + "-" + month + "-" + day;
-    $("#date-pick").attr("max", maxDate);
+    $("#date-pick-exp").attr("max", maxDate);
   });
 
   expenseForm.on("submit", function(event) {
