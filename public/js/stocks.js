@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //import { alpApiUrl } from "../../config/config";
 var company;
 
@@ -94,12 +95,6 @@ function compen(symbol) {
     "https://finnhub.io/api/v1/stock/ceo-compensation?symbol=" +
     symbol +
     "&token=bpkhbgnrh5rcgrlra9h0";
-
-  /*process.env.FINHUB_API_URL +
-    "ceo-compensation?symbol=" +
-    symbol +
-    "&token=" +
-    process.env.FINHUB_API_KEY;*/
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -114,11 +109,6 @@ function revenueEst(symbol) {
     "https://finnhub.io/api/v1/stock/revenue-estimate?symbol=" +
     symbol +
     "&freq=annual&token=bpkhbgnrh5rcgrlra9h0";
-  /*process.env.FINHUB_API_URL +
-    "revenue-estimate?symbol=" +
-    symbol +
-    "&freq=annual&token=" +
-    process.env.FINHUB_API_KEY;*/
 
   $.ajax({
     url: queryurl,
@@ -129,11 +119,6 @@ function revenueEst(symbol) {
 } //This is giving symbol: "BMW.DE",targetHigh,targetLow,targetMean,targetMedian
 // var queryURL= "https://finnhub.io/api/v1/stock/price-target?symbol=BMW.DE&token=bpkhbgnrh5rcgrlra9h0";
 function rec(symbol) {
-  /*process.env.FINHUB_API_URL +
-    "recommendation?symbol=" +
-    symbol +
-    "&token=" +
-    process.env.FINHUB_API_KEY;*/
   var queryURL =
     "https://finnhub.io/api/v1/stock/recommendation?symbol=" +
     symbol +
@@ -148,7 +133,7 @@ function rec(symbol) {
 
 let keys = [];
 let quotes = [];
-let stockName;
+
 let colors = ["rgba(224, 20, 64, 1)", "rgba(20, 224, 75, 1)"];
 let bgColor = ["rgba(255, 99, 132, 0.2)", "rgba(139, 234, 164, 1"];
 
@@ -189,13 +174,8 @@ async function drawChart(stockSym) {
 }
 
 async function loadData(stockSym) {
-  /*alpUrl =
-    process.env.ALP_API_URL +
-    `/query?function=TIME_SERIES_INTRADAY&symbol=${stockSym}&interval=60min&outputsize=full&apikey=` +
-    process.env.ALP_API_KEY;*/
   const response = await fetch(
     `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSym}&interval=60min&outputsize=full&apikey=3MA1I2DFH4BCUUCG`
-    //alpUrl
   );
   const data = await response.json();
   let values = Object.values(Object.values(data)[1]);
