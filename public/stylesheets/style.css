@@ -9,7 +9,7 @@ form.login {
 
 body {
   /* background-image:url(../images/green_cup/green_cup.png); */
-  font-size: 25px;
+  font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   color: #777777;
 }
@@ -116,6 +116,18 @@ h1 {
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+#row {
+margin: 40px;
+}
+
+.card {
+  margin-bottom: 40px;
+  height: 150px;
+}
+
+.card-text {
+  font-size: 15px;
+}
 
 #fixed {
   background-image: url(../images.jfif);
@@ -139,7 +151,7 @@ h1 {
   width: 100%;
   background: #ffffff;
   max-width: 960px;
-  margin: 0 0 40px;
+  margin: 0 0 0px;
   padding: 30px;
   border: none;
 }
@@ -215,7 +227,7 @@ ul#incomes li{
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: ticker;
-  animation-duration: 10s;
+  animation-duration: 25s;
 }
 .ticker-move:hover{
   animation-play-state: paused;
