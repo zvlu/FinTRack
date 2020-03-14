@@ -30,25 +30,29 @@ module.exports = function(app) {
   });
 
   app.post("/api/expense", async function(req, res) {
+    console.log("entered to expense");
     createIncomeOrExpense(req, res);
   });
 
   app.post("/api/income", async function(req, res) {
+    console.log("entered to income");
     createIncomeOrExpense(req, res);
   });
 
   async function createIncomeOrExpense(req, res) {
+    console.log("inside function incexp");
     try {
       console.log("user id " + req.user.id);
       let dbCategory = await db.Category.findOne({
         where: { name: req.body.category }
       });
-
+      console.log(dbCategory);
       let dbCatExist = await db.InAndOut.findOne({
         where: { CategoryId: dbCategory.dataValues.id, UserId: req.user.id }
       });
+      console.log(dbCatExist);
       if (dbCatExist) {
-        await db.InAndOut.update(
+        let updated = await db.InAndOut.update(
           {
             date: req.body.date,
             amount:
@@ -59,6 +63,7 @@ module.exports = function(app) {
             where: { CategoryId: dbCatExist.dataValues.CategoryId }
           }
         );
+        console.log("updated " + updated);
       } else {
         await db.InAndOut.create({
           date: req.body.date,
