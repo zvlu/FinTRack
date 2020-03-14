@@ -1,6 +1,6 @@
 # FinTRack
 
-Deployed App: https://evening-waters-66497.herokuapp.com/
+Deployed App: https://serene-scrubland-32480.herokuapp.com/
 
 # Elevator Pitch
 - - -
