@@ -5,7 +5,11 @@ var config = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: process.env.DB_DIALECT
+    dialect: process.env.DB_DIALECT,
+    alpApiUrl: process.env.ALP_API_URL,
+    alpApiKey: process.env.ALP_API_KEY,
+    finApiKey: process.env.FINHUB_API_KEY,
+    finApiUrl: process.env.FINHUB_API_URL
   },
   test: {
     username: "root",

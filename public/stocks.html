@@ -101,9 +101,9 @@
         });
 
         async function findStock(company) {
-            var queryURL1 =
-                "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + company +
-                "&apikey=3MA1I2DFH4BCUUCG";
+            var queryURL1 = process.env.ALP_API_URL + "/query?function=SYMBOL_SEARCH&keywords=" + company + "&apikey=" + process.env.ALP_API_KEY;
+                //"https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=" + company +
+                //"&apikey=3MA1I2DFH4BCUUCG";
             $.ajax({
                 url: queryURL1,
                 method: "GET"
@@ -126,8 +126,9 @@
         }
 
         async function highLowquote(symbol) {
-            var queryURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol +
-                "&apikey=3MA1I2DFH4BCUUCG";
+            var queryURL = process.env.ALP_API_URL + "query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + process.env.ALP_API_KEY;
+            //"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol +
+            //    "&apikey=3MA1I2DFH4BCUUCG";
             // This is giving "Open price of the day",High price,low price,current price,previous close price,Timestamp of current daily bar for "apple"
             // var queryURL = "https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=bpkhbgnrh5rcgrlra9h0";
             $.ajax({
@@ -158,8 +159,9 @@
 
         function compen(symbol) {
             //CEO compensation
-            var queryURL = "https://finnhub.io/api/v1/stock/ceo-compensation?symbol=" + symbol +
-                "&token=bpkhbgnrh5rcgrlra9h0";
+            var queryURL = process.env.FINHUB_API_URL + "ceo-compensation?symbol=" + symbol + "&token=" + process.env.FINHUB_API_KEY;
+            //"https://finnhub.io/api/v1/stock/ceo-compensation?symbol=" + symbol +
+            //    "&token=bpkhbgnrh5rcgrlra9h0";
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -170,8 +172,9 @@
 
         function revenueEst(symbol) {
             //company revenue estimate
-            var queryurl = "https://finnhub.io/api/v1/stock/revenue-estimate?symbol=" + symbol +
-                "&freq=annual&token=bpkhbgnrh5rcgrlra9h0";
+            var queryurl = process.env.FINHUB_API_URL + "revenue-estimate?symbol=" + symbol + "&freq=annual&token=" + process.env.FINHUB_API_KEY;
+            //"https://finnhub.io/api/v1/stock/revenue-estimate?symbol=" + symbol +
+            //    "&freq=annual&token=bpkhbgnrh5rcgrlra9h0";
             $.ajax({
                 url: queryurl,
                 method: "GET"
@@ -181,8 +184,9 @@
         } //This is giving symbol: "BMW.DE",targetHigh,targetLow,targetMean,targetMedian
         // var queryURL= "https://finnhub.io/api/v1/stock/price-target?symbol=BMW.DE&token=bpkhbgnrh5rcgrlra9h0";
         function rec(symbol) {
-            var queryURL = "https://finnhub.io/api/v1/stock/recommendation?symbol=" + symbol +
-                "&token=bpkhbgnrh5rcgrlra9h0";
+            var queryURL = process.env.FINHUB_API_URL + "recommendation?symbol=" + symbol + "&token=" + process.env.FINHUB_API_KEY;
+            //"https://finnhub.io/api/v1/stock/recommendation?symbol=" + symbol +
+            //    "&token=bpkhbgnrh5rcgrlra9h0";
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -231,9 +235,11 @@
         }
 
         async function loadData(stockSym) {
-
+            alpUrl = process.env.ALP_API_URL + `/query?function=TIME_SERIES_INTRADAY&symbol=${stockSym}&interval=60min&outputsize=full&apikey=` + 
+                     process.env.ALP_API_KEY;
             const response = await fetch(
-                `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSym}&interval=60min&outputsize=full&apikey=3MA1I2DFH4BCUUCG`
+                //`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSym}&interval=60min&outputsize=full&apikey=3MA1I2DFH4BCUUCG`
+                alpUrl
             );
             const data = await response.json()
             let values = (Object.values(Object.values(data)[1]));
