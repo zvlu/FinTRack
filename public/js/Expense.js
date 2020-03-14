@@ -4,8 +4,9 @@ $(document).ready(function() {
   let dateInput = $("#date-pick-exp");
   let expenseTypeInput = $("#expense-type");
   let expenseAmtInput = $("#expense-amt");
-
+  console.log("inside doc.ready");
   $(function() {
+    console.log("inside date fn");
     let dtToday = new Date();
 
     let month = dtToday.getMonth() + 1;
