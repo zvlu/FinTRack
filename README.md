@@ -1,13 +1,13 @@
-#FinTRack
+# FinTRack
 
 Deployed App: https://evening-waters-66497.herokuapp.com/
 
-#Elevator Pitch
+# Elevator Pitch
 - - -
 Are you the person who wants to have control over Finances? Are you the kind of person who wants to Track and record Expenses and spending? FinTrack will help you do just that.
 FinTRack is a web application that allows users to track the Income and Expenses and allot desired portion of Income into Savings and Investment in Stock market.
 
-#Technologies,Tasks and Roles,challenges and Successes
+# Technologies,Tasks and Roles,challenges and Successes
 - - -
   FinTrack is built using Html/css, Frontend Framework Bootstrap, Js,Node Express,Mysql ,Sequelize and Js library Chart.js. ,Finnhub and Alpha Vantage api's .
 
@@ -17,7 +17,7 @@ Some of the challenges faced were building charts and graphs using chart.js and 
 
 Team was successfull in producing easy to follow Frontend design, aesthatic appeal was accomplished by using charts and graphs.
 
-#Future Development
+# Future Development
 _ _ _
 Team would like to add more options and functionalities to the whole application.
 
