@@ -26,14 +26,16 @@
             opacity: 85%;
             margin-right: 15px;
         }
+
         .disp {
             border-radius: 4px;
             opacity: 85%;
             margin-top: 6px;
-            min-width: 250px;
+            min-width: 275px;
             margin-left: 15px;
         }
 
+       
     </style>
 </head>
 
@@ -70,10 +72,15 @@
                 <div class="low"></div>
                 <div class="high"></div>
                 <div class="volume"></div>
-                
+               
             </div>
+            
         </div>
+
+        <div class="buyCurPrice"></div>
+
     </div>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
@@ -84,7 +91,7 @@
 
     <script type="text/javascript">
         var company;
-        let globalQuotes=[];
+        let globalQuotes = [];
         $("#add-city").on("click", function (event) {
             event.preventDefault();
             company = $("#company-input").val().trim();
@@ -112,29 +119,40 @@
                 rec(symbol);
                 drawChart(symbol)
                 $("#myChart").css({
-                    "background-color": "#ffffff", "border-radius": "4px"
+                    "background-color": "#ffffff",
+                    "border-radius": "4px"
                 });
             });
         }
 
         async function highLowquote(symbol) {
-            var queryURL="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=3MA1I2DFH4BCUUCG";
+            var queryURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol +
+                "&apikey=3MA1I2DFH4BCUUCG";
             // This is giving "Open price of the day",High price,low price,current price,previous close price,Timestamp of current daily bar for "apple"
-           // var queryURL = "https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=bpkhbgnrh5rcgrlra9h0";
+            // var queryURL = "https://finnhub.io/api/v1/quote?symbol=" + symbol + "&token=bpkhbgnrh5rcgrlra9h0";
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                console.log('Global Quote==>'+response["Global Quote"]["02. open"]);
-                $(".curPrice").append("<b>Current Price: </b>"+response["Global Quote"]["05. price"])
-                $(".open").append("<b>Open: </b>"+ response["Global Quote"]["02. open"]);
-                $(".privClose").append("<b>Previous Close: </b>" + response["Global Quote"]["08. previous close"]);
+                //console.log('Global Quote==>' + response["Global Quote"]["02. open"]);
+                $(".curPrice").append("<b>Current Price: </b>" + response["Global Quote"]["05. price"] +
+                         "<button style='margin: 12px;'class='btn btn-primary glyphicon' type='button'>Buy</button>");
+                $(".open").append("<b>Open: </b>" + response["Global Quote"]["02. open"]);
+                $(".privClose").append("<b>Previous Close: </b>" + response["Global Quote"][
+                    "08. previous close"
+                ]);
                 $(".high").append("<b>High: </b>" + response["Global Quote"]["03. high"]);
                 $(".low").append("<b>Low: </b>" + response["Global Quote"]["04. low"]);
                 $(".volume").append("<b>Volume: </b>" + response["Global Quote"]["06. volume"]);
-                $(".disp").css({"background-color": "#ffffff", "border-radius": "4px", "border-radius": "4px",
-                                "min-width": "350px !important;", "flex-grow": "unset"})
-
+                $(".disp").css({
+                    "background-color": "#ffffff",
+                    "border-radius": "4px",
+                    "border-radius": "4px",
+                    "min-width": "350px !important;",
+                    "flex-grow": "unset"
+                })
+                
+              
             });
         }
 
@@ -176,14 +194,14 @@
         let keys = [];
         let quotes = [];
         let stockName;
-        let colors=['rgba(224, 20, 64, 1)', 'rgba(20, 224, 75, 1)']
-        let bgColor=['rgba(255, 99, 132, 0.2)', 'rgba(139, 234, 164, 1']
-        
+        let colors = ['rgba(224, 20, 64, 1)', 'rgba(20, 224, 75, 1)']
+        let bgColor = ['rgba(255, 99, 132, 0.2)', 'rgba(139, 234, 164, 1']
+
         var ctx = document.getElementById('myChart').getContext('2d');
 
         async function drawChart(stockSym) {
             await loadData(stockSym);
-            let colorIndex=quotes[quotes.length -1] - quotes[0] > 0 ? 1 : 0;
+            let colorIndex = quotes[quotes.length - 1] - quotes[0] > 0 ? 1 : 0;
             console.log(colorIndex + colors[colorIndex])
             var myChart = new Chart(ctx, {
                 type: 'line',
@@ -229,7 +247,7 @@
                 //console.log(Object.values(element)[3])
                 quotes.push(Object.values(element)[3]);
             });
-           // console.log(quotes)
+            // console.log(quotes)
         }
     </script>
 
